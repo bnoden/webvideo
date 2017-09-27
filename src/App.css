@@ -11,11 +11,25 @@
   box-shadow: 0px 0px 18px #344257;
 }
 
-.App-intro {
-  font-size: large;
+.vid {
+  width: 720px;
+  height: 480px;
 }
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+@media only screen and (max-width:768px) {
+  .vid {
+    width: 768px;
+    height: calc((768/720)*480px);
+  }
+}
+@media only screen and (max-width:480px) {
+  .vid {
+    width: 480px;
+    height: calc((480/720)*480px);
+  }
+}
+@media only screen and (max-width:320px) {
+  .vid {
+    width: calc(320px);
+    height: calc((320/720)*480px);
+  }
 }
