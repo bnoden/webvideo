@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import './css/currentVideo.css'
 import video1 from './video/dits01_480.mp4';
 
 class CurrentVideo extends Component {
