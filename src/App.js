@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 // import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
+
 import { VideoDisplay } from './components/videoDisplay';
 
 import './App.css';
+
 
 class App extends Component {
   render() {

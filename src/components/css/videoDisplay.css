@@ -1,0 +1,37 @@
+.videoDisplay {
+  display: flex;
+  flex-flow: row wrap;
+}
+.videoPlaylist,
+.currentVideo,
+.videoConfig {
+  flex: 1 100%;
+}
+.videoPlaylist, .currentVideo, .videoConfig {
+  border-color: #5584A3;
+  border-style: solid;
+  border-width: thick;
+  border-radius: 6px;
+}
+
+
+@media all and (min-width: 480px) {
+  .videoPlaylist,
+  .videoConfig {
+    flex: 1 auto;
+  }
+}
+@media all and (min-width: 768px) {
+  .currentVideo {
+    flex: 2 0px;
+  }
+  .videoPlaylist {
+    order: 1;
+  }
+  .currentVideo {
+    order: 2;
+  }
+  .videoConfig {
+    order: 3;
+  }
+}
