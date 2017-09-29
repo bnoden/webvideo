@@ -1,3 +1,10 @@
 .videoConfig {
   text-align: center;
 }
+.speedControl, .opacityControl {
+  width: 95%;
+}
+.speedSlider, .opacitySlider {
+  width: 80%;
+  outline: none;
+}
