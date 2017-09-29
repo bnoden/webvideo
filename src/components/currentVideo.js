@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import './css/currentVideo.css'
-import video1 from './video/dits01_480.mp4';
+import './css/currentVideo.css';
+import video1 from './video/001.mp4';
 
 class CurrentVideo extends Component {
   render() {
@@ -9,6 +9,7 @@ class CurrentVideo extends Component {
       <div className="currentVideo">
         <video
           ref="curvid"
+          id="video1"
           className="vid"
           onClick={() => {
             this.refs.curvid.paused
