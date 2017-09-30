@@ -1,0 +1,10 @@
+.video-config {
+  text-align: center;
+}
+.speed-control, .opacity-control {
+  width: 95%;
+}
+.speed-slider, .opacity-slider {
+  width: 80%;
+  outline: none;
+}

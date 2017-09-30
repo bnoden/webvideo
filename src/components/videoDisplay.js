@@ -1,14 +1,14 @@
 import React from 'react';
 
-import './css/videoDisplay.css';
+import './styles/VideoDisplay.css';
 
-import { VideoPlaylist } from './videoPlaylist';
-import CurrentVideo from './currentVideo';
-import VideoConfig from './videoConfig';
+import Playlist from './Playlist';
+import CurrentVideo from './CurrentVideo';
+import VideoConfig from './VideoConfig';
 
 export const VideoDisplay = () =>
-  <div className="videoDisplay">
-    <VideoPlaylist />
+  <div className="video-display">
+    <Playlist />
     <CurrentVideo />
     <VideoConfig />
   </div>;

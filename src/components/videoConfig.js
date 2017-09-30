@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
 
-import SpeedControl from './speedControl';
-import OpacityControl from './opacityControl';
-import './css/videoConfig.css';
+import SpeedControl from './SpeedControl';
+import OpacityControl from './OpacityControl';
+import './styles/VideoConfig.css';
 
 class VideoConfig extends Component {
   render() {
-
     return (
-      <div className="videoConfig">
+      <div className="video-config">
         <SpeedControl />
         <OpacityControl />
+        <div style={{ textAlign: 'center' }}>
+          <h2>
+            <br />MORE<br />
+            <br />CONFIG<br />
+            <br />WILL GO<br />
+            <br />HERE
+          </h2>
+        </div>
       </div>
-    )
+    );
   }
 }
 

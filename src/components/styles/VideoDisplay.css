@@ -1,25 +1,29 @@
-.videoDisplay {
+
+.video-display {
   display: flex;
   flex-flow: row wrap;
 }
-.videoPlaylist,
+.playlist,
 .currentVideo,
-.videoConfig {
+.video-config {
   flex: 1 100%;
 }
-.videoPlaylist, .currentVideo, .videoConfig {
-  border-color: #5584A3;
+.playlist,
+.currentVideo,
+.video-config {
   border-style: solid;
-  border-width: thick;
-  border-radius: 6px;
-}
-.currentVideo {
-  background-color: #1A1A1A;
+  border-color: #E9F5F4;
+  border-width: 5px;
+  border-radius: 16px;
+  background-color: #1a1a1a;
+  color: #ebf2f7;
+  padding: 2px;
+  margin: 6px;
 }
 
 @media all and (min-width: 480px) {
-  .videoPlaylist,
-  .videoConfig {
+  .playlist,
+  .video-config {
     flex: 1 auto;
   }
 }
@@ -27,13 +31,13 @@
   .currentVideo {
     flex: 2 0px;
   }
-  .videoPlaylist {
+  .playlist {
     order: 1;
   }
   .currentVideo {
     order: 2;
   }
-  .videoConfig {
+  .video-config {
     order: 3;
   }
 }

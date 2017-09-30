@@ -1,24 +1,33 @@
 import React, { Component } from 'react';
 
-import './css/speedControl.css';
+import './styles/SpeedControl.css';
 
+const defaultSpeed = 1.0;
 class SpeedControl extends Component {
   render() {
-
-    return(
+    return (
       <div className="speedControl">
-        <label htmlFor="speedSlider">Speed</label>
+        <label htmlFor="speedSlider" id="speedometer">
+          Speed {(defaultSpeed * 100).toFixed()}%
+        </label>
         <br />
         <input
           ref="speedslider"
-          className="speedSlider"
+          className="speed-slider"
           type="range"
-          min="0.1"
+          min="0.01"
           max="4.0"
           step="0.01"
-          defaultValue="1.0"
+          defaultValue={defaultSpeed}
           onInput={() => {
-            document.getElementById('video1').playbackRate = this.refs.speedslider.value;
+            document.getElementById('video').playbackRate &&
+              (document.getElementById(
+                'video'
+              ).playbackRate = this.refs.speedslider.value);
+            document.getElementById(
+              'speedometer'
+            ).innerHTML = `Speed ${(document.getElementById('video')
+              .playbackRate * 100).toFixed()}%`;
           }}
         />
       </div>
