@@ -52,9 +52,15 @@
 
   <script src="/__/firebase/init.js"></script>
   <script>
-    import { fbc } from '../src/access';
     // Initialize Firebase
-    var config = JSON.parse(JSON.stringify(fbc));
+    var config = {
+      apiKey: 'AIzaSyAJ2CjyMXElc3k6xNCH8l18LX-sOPabWAY',
+      authDomain: 'bnoden-wv.firebaseapp.com',
+      databaseURL: 'https://bnoden-wv.firebaseio.com',
+      projectId: 'bnoden-wv',
+      storageBucket: '',
+      messagingSenderId: '68500006987'
+    }
     firebase.initializeApp(config);
   </script>
 
