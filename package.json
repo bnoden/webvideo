@@ -2,6 +2,7 @@
   "name": "webvideo",
   "author": "Brandon Oden <brandroid369@gmail.com>",
   "version": "0.1.0",
+  "homepage": "https://bnoden.github.io/webvideo/",
   "dependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
