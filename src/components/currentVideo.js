@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import './styles/CurrentVideo.css';
-import { demoVideo, demoToken, shortFileName} from './access';
+import { demoVideo, demoToken, shortFileName} from '../access';
 
 const videoSrc = 'https://'+demoVideo+demoToken;
 
@@ -10,7 +10,7 @@ class CurrentVideo extends Component {
     return (
       <div className="currentVideo">
         <video
-          src={'https://'+demoVideo+demoToken}
+          src={videoSrc}
           type="video/mp4"
           ref="curvid"
           id="video"
