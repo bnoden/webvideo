@@ -41,6 +41,7 @@ class CurrentVideo extends Component {
               : this.refs.curvid.pause();
           }}
           controls
+          preload
         />
       </div>
     );
