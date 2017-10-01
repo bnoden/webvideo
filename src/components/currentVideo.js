@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 import './styles/CurrentVideo.css';
-import { demoVideo, demoToken, shortFileName} from '../access';
+import { demoVideo, demoToken, shortFileName } from '../access';
 
-const videoSrc = 'https://'+demoVideo+demoToken;
+const videoSrc = 'https://' + demoVideo + demoToken;
 
 class CurrentVideo extends Component {
   render() {
@@ -19,16 +19,20 @@ class CurrentVideo extends Component {
             setTimeout(() => {
               document.getElementById(
                 'now-playing'
-              ).innerHTML = `<p>${shortFileName(this.refs.curvid
-                .getAttribute('src'), '?')} - Playing</p>`;
+              ).innerHTML = `<p>${shortFileName(
+                this.refs.curvid.getAttribute('src'),
+                '?'
+              )} - Playing</p>`;
             }, 200);
           }}
           onPause={() => {
             setTimeout(() => {
               document.getElementById(
                 'now-playing'
-              ).innerHTML = `<p>${shortFileName(this.refs.curvid
-                .getAttribute('src'), demoToken)} - Paused</p>`;
+              ).innerHTML = `<p>${shortFileName(
+                this.refs.curvid.getAttribute('src'),
+                demoToken
+              )} - Paused</p>`;
             }, 200);
           }}
           onClick={() => {
