@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 
 import './styles/CurrentVideo.css';
-import demoVideo from './demo/demo_video.mp4';
+import { demoVideo, demoToken, shortFileName} from './access';
+
+const videoSrc = 'https://'+demoVideo+demoToken;
 
 class CurrentVideo extends Component {
   render() {
     return (
       <div className="currentVideo">
         <video
-          src={demoVideo}
+          src={'https://'+demoVideo+demoToken}
           type="video/mp4"
           ref="curvid"
           id="video"
@@ -17,16 +19,16 @@ class CurrentVideo extends Component {
             setTimeout(() => {
               document.getElementById(
                 'now-playing'
-              ).innerHTML = `<p>${((this.refs.curvid
-                .getAttribute('src')).split('/')[3])} - Playing</p>`;
+              ).innerHTML = `<p>${shortFileName(this.refs.curvid
+                .getAttribute('src'), '?')} - Playing</p>`;
             }, 200);
           }}
           onPause={() => {
             setTimeout(() => {
               document.getElementById(
                 'now-playing'
-              ).innerHTML = `<p>${((this.refs.curvid
-                .getAttribute('src')).split('/')[3])} - Paused</p>`;
+              ).innerHTML = `<p>${shortFileName(this.refs.curvid
+                .getAttribute('src'), demoToken)} - Paused</p>`;
             }, 200);
           }}
           onClick={() => {
