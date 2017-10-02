@@ -2,8 +2,22 @@
   padding: 12px;
 }
 
-#input-skip-ff {
-  width: 30px;
+#input-skip-ff,
+#input-skip-rw {
+  width: 40px;
   border-radius: 12px;
   padding-left: 6px;
+  text-align: right;
+}
+
+#input-skip-ff {
+  margin-right: 4px;
+}
+
+#input-skip-rw {
+  margin-left: 4px;
+}
+.btn-skip-back,
+.btn-skip-forward {
+  margin: 4px;
 }
