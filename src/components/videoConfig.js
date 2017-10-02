@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import SpeedControl from './SpeedControl';
+import Skip from './Skip';
 import OpacityControl from './OpacityControl';
 import './styles/VideoConfig.css';
 
@@ -9,6 +10,7 @@ class VideoConfig extends Component {
     return (
       <div className="video-config">
         <SpeedControl />
+        <Skip />
         <OpacityControl />
         <div style={{ textAlign: 'center' }}>
           <h2>

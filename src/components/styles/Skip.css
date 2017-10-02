@@ -1,0 +1,9 @@
+.skip {
+  padding: 12px;
+}
+
+#input-skip-ff {
+  width: 30px;
+  border-radius: 12px;
+  padding-left: 6px;
+}

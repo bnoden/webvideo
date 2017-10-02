@@ -41,11 +41,12 @@ class CurrentVideo extends Component {
               : this.refs.curvid.pause();
           }}
           controls
-          preload
+          preload='auto'
         />
       </div>
     );
   }
 }
 
+export const video = () => document.getElementById('video');
 export default CurrentVideo;
