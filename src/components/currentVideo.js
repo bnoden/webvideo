@@ -79,23 +79,29 @@ const mediaState = (str, status) => {
 };
 
 export const updateTime = str => {
-  document.getElementById('now-playing').innerHTML = `<p>${shortFileName(
-    document.getElementById('video').getAttribute('src'),
-    demoToken
-  )} - ${mediaState(str)} - ${formatTime(
-    document.getElementById('video')
-  )}</p>`;
+  const v = document.getElementById('video');
+  // TODO: make separate display elements and proper Video component, this is horrific
+  document.getElementById('now-playing').innerHTML =
+  `<p>[ ${shortFileName(v.getAttribute('src'), demoToken)} ]
+  [ ${mediaState(str)} ] [ ${formatTime(v, 'current')} |
+  -${formatTime(v, 'remaining')} ]</p>`;
 };
 
-export const formatTime = v => {
-  const t = v.currentTime ? v.currentTime : v.duration;
+export const formatTime = (v, str) => {
+  const cTime = v.currentTime ? v.currentTime : v.duration;
+  const rTime = v.currentTime ? v.duration-v.currentTime : v.duration;
+  let t;
+  // Might add more conditions later
+  if (str === 'remaining') { t = rTime; }
+  else if (str === 'current') { t = cTime; }
   const s = t >= 60 ? Math.floor(t % 60) : Math.floor(t);
   const m = t >= 60 ? Math.floor(t / 60) : 0;
   const h = t >= 3600 ? Math.floor(t / 3600) : 0;
-  const hStr = h ? h.toString() : '00';
-  const mStr = m >= 10 ? m.toString() : `0${m}`;
+  const hStr = v.duration>=3600 && h.toString();
+  const mStr = m <= 10 && v.duration>=3600 ? `0${m}` : m.toString();
   const sStr = s >= 10 ? s.toString() : `0${s}`;
-  return `${hStr} : ${mStr} : ${sStr}`;
+  const tStr = v.duration>=3600 ? `${hStr}:${mStr}:${sStr}`:`${mStr}:${sStr}`;
+  return tStr;
 };
 
 export const video = () => document.getElementById('video');
