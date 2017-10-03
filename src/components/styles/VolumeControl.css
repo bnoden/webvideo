@@ -1,0 +1,6 @@
+.volume-control {
+  display: flex;
+}
+.volume-slider {
+  flex-direction: row;
+}

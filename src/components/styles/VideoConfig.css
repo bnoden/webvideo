@@ -1,7 +1,7 @@
 .video-config {
   text-align: center;
 }
-.speed-control, .opacity-control {
+.speed-control, .opacity-control, .volume-control {
   width: 48%;
   height: auto;
   font-size: 14px;
@@ -10,7 +10,7 @@
   text-align: left;
   width: 90%
 }
-.speed-slider, .opacity-slider {
+.speed-slider, .opacity-slider, .volume-slider {
   width: 92%;
   height: 16px;
   outline: none;
