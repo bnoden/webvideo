@@ -6,7 +6,7 @@ const defaultSpeed = 1.0;
 class SpeedControl extends Component {
   render() {
     return (
-      <div className="speedControl">
+      <div className="speed-control">
         <label htmlFor="speedSlider" id="speedometer">
           Speed {(defaultSpeed * 100).toFixed()}%
         </label>

@@ -1,23 +1,32 @@
 .skip {
-  padding: 12px;
+  padding: 6px;
 }
 
 #input-skip-ff,
 #input-skip-rw {
-  width: 40px;
+  font-size: 12px;
+  width: 36px;
   border-radius: 12px;
-  padding-left: 6px;
+  padding-left: 3px;
   text-align: right;
 }
 
 #input-skip-ff {
-  margin-right: 4px;
+  margin-right: 2px;
 }
 
 #input-skip-rw {
-  margin-left: 4px;
+  margin-left: 2px;
 }
 .btn-skip-back,
 .btn-skip-forward {
-  margin: 4px;
+  font-size: 11px;
+
+  margin: 2px;
+}
+.btn-skip-forward {
+  width: 28px;
+}
+.btn-skip-back {
+  width: 46px;
 }

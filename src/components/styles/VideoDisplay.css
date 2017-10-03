@@ -3,22 +3,39 @@
   display: flex;
   flex-flow: row wrap;
 }
+.currentVideo {
+  flex: 2;
+}
 .playlist,
-.currentVideo,
 .video-config {
-  flex: 1 100%;
+  flex: 1;
 }
 .playlist,
 .currentVideo,
-.video-config {
+.video-config,
+.App-header {
   border-style: solid;
-  border-color: #E9F5F4;
-  border-width: 5px;
-  border-radius: 16px;
-  background-color: #1a1a1a;
+  border-color: #365D80;
+  border-width: 2px;
+  border-radius: 4px;
+  background-color: #020A0F;
   color: #ebf2f7;
   padding: 2px;
   margin: 6px;
+}
+.App-header {
+  text-align: center;
+  width: 98%;
+  height: 50px;
+  display: block;
+  overflow: hidden;
+}
+
+.App-header p {
+  font-family: Verdana, Arial;
+  font-size: 18px;
+  margin: auto;
+  padding-top: 12px;
 }
 
 @media all and (min-width: 480px) {
@@ -40,4 +57,5 @@
   .video-config {
     order: 3;
   }
+
 }

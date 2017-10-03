@@ -2,9 +2,16 @@
   text-align: center;
 }
 .speed-control, .opacity-control {
-  width: 95%;
+  width: 48%;
+  height: auto;
+  font-size: 14px;
+}
+.skip {
+  text-align: left;
+  width: 90%
 }
 .speed-slider, .opacity-slider {
-  width: 80%;
+  width: 92%;
+  height: 16px;
   outline: none;
 }

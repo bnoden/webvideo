@@ -1,34 +1,8 @@
 .vid {
-  width: 720px;
+  width: 640px;
   height: 480px;
-}
-@media only screen and (max-width:768px) {
-  .vid {
-    width: calc(0.6*768px);
-    height: calc(((0.6*768px)/720)*480px);
-  }
-}
-@media only screen and (max-width:667px) {
-  .vid {
-    width: calc(667/2px);
-    height: calc((667/720)/2*480px);
-  }
-}
-@media only screen and (max-width:480px) {
-  .vid {
-    width: 480px;
-    height: calc((480/720)*480px);
-  }
-}
-@media only screen and (max-width:375px) {
-  .vid {
-    width: 375px;
-    height: calc((375/720)*480px);
-  }
-}
-@media only screen and (max-width:320px) {
-  .vid {
-    width: 320px;
-    height: calc((320/720)*480px);
-  }
+  left: 50%;
+  position: relative;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }

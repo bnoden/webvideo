@@ -83,8 +83,8 @@ export const updateTime = str => {
   // TODO: make separate display elements and proper Video component, this is horrific
   document.getElementById('now-playing').innerHTML =
   `<p>[ ${shortFileName(v.getAttribute('src'), demoToken)} ]
-  [ ${mediaState(str)} ] [ ${formatTime(v, 'current')} |
-  -${formatTime(v, 'remaining')} ]</p>`;
+  ${mediaState(str)} ${formatTime(v, 'current')} |
+  -${formatTime(v, 'remaining')}</p>`;
 };
 
 export const formatTime = (v, str) => {
