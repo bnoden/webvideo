@@ -72,9 +72,7 @@ const mediaState = (str, status) => {
     default:
       status = 'Playing';
   }
-  if (status !== 'Seeking') {
-    prevMediaState = status;
-  }
+  prevMediaState = status !== 'Seeking' && status;
   return status;
 };
 
