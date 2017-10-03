@@ -23,19 +23,23 @@ class VolumeControl extends Component {
               ).volume = this.refs.volumeslider.value);
             document.getElementById(
               'volumeter'
-            ).innerHTML = `Volume ${(document.getElementById('video')
-              .volume * 100).toFixed()}%`;
+            ).innerHTML = `Volume ${(document.getElementById('video').volume *
+              100).toFixed()}%`;
+            if (document.getElementById('btn-mute').checked) {
+              document.getElementById('btn-mute').checked = false;
+              muteState();
+            }
           }}
         />
         <div>
-        <input
-        type="checkbox"
-        id="btn-mute"
-        onChange={()=>{
-          toggleMute();
-        }}
-        />
-        <label htmlFor="btn-mute">Mute</label>
+          <input
+            type="checkbox"
+            id="btn-mute"
+            onChange={() => {
+              toggleMute();
+            }}
+          />
+          <label htmlFor="btn-mute">Mute</label>
         </div>
       </div>
     );
@@ -43,12 +47,22 @@ class VolumeControl extends Component {
 }
 
 let muted = 1;
-const toggleMute = (on, off, muteState) => {
-  on = 1;
-  off = 0;
-  muted = muted ? off : on;
-  document.querySelector('.volume-slider').value = muted;
-  document.getElementById('video').volume = muted;
-}
+let beforeMuted;
+
+const muteState = () => {
+  muted = muted ? 0 : 1;
+};
+
+const toggleMute = () => {
+  if (document.getElementById('btn-mute').checked) {
+    beforeMuted = document.querySelector('.volume-slider').value;
+  }
+  muteState();
+  document.querySelector('.volume-slider').value = !muted ? 0 : beforeMuted;
+  document.getElementById('video').volume = !muted ? 0 : beforeMuted;
+  document.getElementById('volumeter').innerHTML = !muted
+    ? 'Volume Muted'
+    : `Volume ${(document.getElementById('video').volume * 100).toFixed()}%`;
+};
 
 export default VolumeControl;
