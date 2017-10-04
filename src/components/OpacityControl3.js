@@ -9,14 +9,14 @@ class OpacityControl3 extends Component {
     return (
       <div className="opacity-control3">
         <label htmlFor="opacitySlider3" id="opacitometer3" className="meter">
-          Layer 3 {(defaultOpacity * 100).toFixed()}%
+          Layer 3 {(defaultOpacity * 166.666).toFixed()}%
         </label>
         <input
           ref="opacityslider3"
           className="opacity-slider3"
           type="range"
           min="0.00"
-          max="1.0"
+          max="0.6"
           step="0.01"
           defaultValue={defaultOpacity}
           onInput={() => {
@@ -27,9 +27,9 @@ class OpacityControl3 extends Component {
             document.getElementById('opacitometer3').innerHTML = `Layer 3
             <span className="leading-zeroes">${leadingZeroes(
               (document.querySelector('.layer3').style.opacity *
-                100).toFixed()
+                166.666).toFixed()
             )}</span>${(document.querySelector('.layer3').style.opacity *
-              100).toFixed()}%`;
+              166.666).toFixed()}%`;
           }}
         />
       </div>
