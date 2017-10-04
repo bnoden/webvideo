@@ -26,7 +26,11 @@ class SpeedControl extends Component {
               ).playbackRate = this.refs.speedslider.value);
             document.getElementById(
               'speedometer'
-            ).innerHTML = `Speed <span className="leading-zeroes">${leadingZeroes((document.getElementById('video').playbackRate * 100).toFixed())}</span>${(document.getElementById('video').playbackRate * 100).toFixed()}%`;}}
+            ).innerHTML = `Speed <span className="leading-zeroes">${leadingZeroes(
+              (document.getElementById('video').playbackRate * 100).toFixed()
+            )}</span>${(document.getElementById('video').playbackRate *
+              100).toFixed()}%`;
+          }}
         />
       </div>
     );

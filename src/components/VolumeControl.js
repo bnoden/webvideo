@@ -25,25 +25,27 @@ class VolumeControl extends Component {
                 ).volume = this.refs.volumeslider.value);
               document.getElementById(
                 'volumeter'
-              ).innerHTML = `Volume <span className="leading-zeroes">${leadingZeroes((document.getElementById('video').volume * 100).toFixed())}</span>${(document.getElementById('video').volume * 100).toFixed()}%`;
+              ).innerHTML = `Volume <span className="leading-zeroes">${leadingZeroes(
+                (document.getElementById('video').volume * 100).toFixed()
+              )}</span>${(document.getElementById('video').volume *
+                100).toFixed()}%`;
               if (document.getElementById('btn-mute').checked) {
                 document.getElementById('btn-mute').checked = false;
                 muteState();
               }
             }}
           />
-
         </div>
         <div className="mute-box">
-            <input
-              type="checkbox"
-              id="btn-mute"
-              onChange={() => {
-                toggleMute();
-              }}
-            />
-            <label htmlFor="btn-mute">Mute</label>
-          </div>
+          <input
+            type="checkbox"
+            id="btn-mute"
+            onChange={() => {
+              toggleMute();
+            }}
+          />
+          <label htmlFor="btn-mute">Mute</label>
+        </div>
       </div>
     );
   }
@@ -64,7 +66,9 @@ const toggleMute = () => {
   document.getElementById('video').volume = !muted ? 0 : beforeMuted;
   document.getElementById('volumeter').innerHTML = !muted
     ? 'Volume Mute'
-    : `Volume <span className="leading-zeroes">${leadingZeroes((document.getElementById('video').volume * 100).toFixed())}</span>${(document.getElementById('video').volume * 100).toFixed()}%`;
+    : `Volume <span className="leading-zeroes">${leadingZeroes(
+        (document.getElementById('video').volume * 100).toFixed()
+      )}</span>${(document.getElementById('video').volume * 100).toFixed()}%`;
 };
 
 export default VolumeControl;

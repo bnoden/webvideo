@@ -16,35 +16,45 @@ class CurrentVideo extends Component {
   render() {
     return (
       <div className="currentVideo">
-        <video
-          ref="curvid"
-          src={demoSrc}
-          id="video"
-          className="vid"
-          onLoadedMetadata={()=>{updateTime()}}
-          onInput={() => {
-            updateTime();
-          }}
-          onTimeUpdate={() => {
-            if (mediaState() === 'Playing') {
+        <div className="buffer-layer">
+          <video
+            ref="curvid"
+            src={demoSrc}
+            id="video"
+            className="vid"
+            onLoadedMetadata={()=>{updateTime()}}
+            onInput={() => {
               updateTime();
-            }
-          }}
-          onClick={() => {
-            this.refs.curvid.paused
-              ? this.refs.curvid.play()
-              : this.refs.curvid.pause();
-            updateTime();
-          }}
-          onSeeked={() => {
-            updateTime(prevMediaState); // Else it gets stuck on 'Seeking' while paused.
-          }}
-          controls
-          preload="auto"
-        />
+            }}
+            onTimeUpdate={() => {
+              if (mediaState() === 'Playing') {
+                updateTime();
+              }
+            }}
+            onClick={() => {
+              this.refs.curvid.paused
+                ? this.refs.curvid.play()
+                : this.refs.curvid.pause();
+              updateTime();
+            }}
+            onSeeked={() => {
+              updateTime(prevMediaState); // Else it gets stuck on 'Seeking' while paused.
+            }}
+            preload="auto"
+            controls
+          />
+        <div className="layer layer0"></div>
+        <div className="layer layer2"></div>
+        <div className="layer layer3"></div>
+        <div className="layer layer4" id="layerB" onDoubleClick={()=>{rotateLayer()}}></div>
+        </div>
       </div>
     );
   }
+}
+
+const rotateLayer = () => {
+  document.getElementById('layerB').style.transform = "translateY(25px)";
 }
 
 let prevMediaState = '';

@@ -9,13 +9,13 @@ class OpacityControl extends Component {
     return (
       <div className="opacity-control">
         <label htmlFor="opacitySlider" id="opacitometer" className="meter">
-          Opacity {(defaultOpacity * 100).toFixed()}%
+          Opacity 1 {(defaultOpacity * 100).toFixed()}%
         </label>
         <input
           ref="opacityslider"
           className="opacity-slider"
           type="range"
-          min="0.01"
+          min="0.00"
           max="1.0"
           step="0.01"
           defaultValue={defaultOpacity}
@@ -24,10 +24,11 @@ class OpacityControl extends Component {
               (document.getElementById(
                 'video'
               ).style.opacity = this.refs.opacityslider.value);
-            document.getElementById(
-              'opacitometer'
-            ).innerHTML = `Opacity
-            <span className="leading-zeroes">${leadingZeroes((document.getElementById('video').style.opacity * 100).toFixed())}</span>${(document.getElementById('video').style.opacity * 100).toFixed()}%`;
+            document.getElementById('opacitometer').innerHTML = `Opacity 1
+            <span className="leading-zeroes">${leadingZeroes(
+              (document.getElementById('video').style.opacity * 100).toFixed()
+            )}</span>${(document.getElementById('video').style.opacity *
+              100).toFixed()}%`;
           }}
         />
       </div>
