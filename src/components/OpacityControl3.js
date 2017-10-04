@@ -9,7 +9,7 @@ class OpacityControl3 extends Component {
     return (
       <div className="opacity-control3">
         <label htmlFor="opacitySlider3" id="opacitometer3" className="meter">
-          Opacity 3 {(defaultOpacity * 100).toFixed()}%
+          Layer 3 {(defaultOpacity * 100).toFixed()}%
         </label>
         <input
           ref="opacityslider3"
@@ -24,7 +24,7 @@ class OpacityControl3 extends Component {
               (document.querySelector(
                 '.layer3'
               ).style.opacity = this.refs.opacityslider3.value);
-            document.getElementById('opacitometer3').innerHTML = `Opacity 3
+            document.getElementById('opacitometer3').innerHTML = `Layer 3
             <span className="leading-zeroes">${leadingZeroes(
               (document.querySelector('.layer3').style.opacity *
                 100).toFixed()

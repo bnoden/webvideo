@@ -9,7 +9,7 @@ class OpacityControl extends Component {
     return (
       <div className="opacity-control">
         <label htmlFor="opacitySlider" id="opacitometer" className="meter">
-          Opacity 1 {(defaultOpacity * 100).toFixed()}%
+          Layer 1 {(defaultOpacity * 100).toFixed()}%
         </label>
         <input
           ref="opacityslider"
@@ -24,7 +24,7 @@ class OpacityControl extends Component {
               (document.getElementById(
                 'video'
               ).style.opacity = this.refs.opacityslider.value);
-            document.getElementById('opacitometer').innerHTML = `Opacity 1
+            document.getElementById('opacitometer').innerHTML = `Layer 1
             <span className="leading-zeroes">${leadingZeroes(
               (document.getElementById('video').style.opacity * 100).toFixed()
             )}</span>${(document.getElementById('video').style.opacity *
