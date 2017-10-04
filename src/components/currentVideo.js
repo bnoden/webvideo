@@ -17,11 +17,10 @@ class CurrentVideo extends Component {
     return (
       <div className="currentVideo">
         <video
-          type="video/mp4"
           ref="curvid"
+          src={demoSrc}
           id="video"
           className="vid"
-          src={demoSrc}
           onLoadedMetadata={()=>{updateTime()}}
           onInput={() => {
             updateTime();
