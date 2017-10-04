@@ -3,21 +3,26 @@ import React, { Component } from 'react';
 import './styles/CurrentVideo.css';
 import { demoVideo, demoToken, shortFileName } from '../access';
 
-export const videoSrc = 'https://' + demoVideo + demoToken;
+export const demoSrc = 'https://' + demoVideo + demoToken;
+const srcDisplay = () => {
+  if (document.getElementById('file-select').value) {
+    return shortFileName(document.getElementById('file-select').value)
+  } else {
+    return shortFileName(demoSrc, 1);
+  }
+}
 
 class CurrentVideo extends Component {
   render() {
     return (
       <div className="currentVideo">
         <video
-          src={videoSrc}
           type="video/mp4"
           ref="curvid"
           id="video"
           className="vid"
-          onLoadedMetadata={() => {
-            updateTime();
-          }}
+          src={demoSrc}
+          onLoadedMetadata={()=>{updateTime()}}
           onInput={() => {
             updateTime();
           }}
@@ -80,7 +85,7 @@ export const updateTime = str => {
   const v = document.getElementById('video');
   // TODO: make separate display elements and proper Video component, this is horrific
   document.getElementById('now-playing').innerHTML =
-  `<p>[ ${shortFileName(v.getAttribute('src'), demoToken)} ]
+  `<p>[ ${srcDisplay()} ]
   ${mediaState(str)} ${formatTime(v, 'current')} |
   -${formatTime(v, 'remaining')}</p>`;
 };

@@ -48,7 +48,6 @@ class VolumeControl extends Component {
 
 let muted = 1;
 let beforeMuted;
-
 const muteState = () => {
   muted = muted ? 0 : 1;
 };

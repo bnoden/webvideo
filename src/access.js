@@ -15,8 +15,10 @@ export const shortFileName = (file, token) => {
     let arr = file.split(/[?]/);
     arr.pop();
     filename = arr[arr.length - 1].split('/');
+    filename = filename[filename.length - 1].split('\\');
   } else {
     filename = file.split('/');
+    filename = filename[filename.length - 1].split('\\');
   }
   return filename[filename.length - 1];
 };

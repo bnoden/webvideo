@@ -53,13 +53,9 @@ const skip = (media, tVal) => {
     const result = cTime + val;
     let minmax = 0 < cTime + val ? media.duration : 0;
 
-    console.log('\ntime before: ' + media.currentTime.toFixed());
-
     media.currentTime = minmax
       ? minmax > result ? result : minmax
       : result > minmax ? result : minmax;
-
-    console.log('time after: ' + media.currentTime.toFixed());
   }
 };
 

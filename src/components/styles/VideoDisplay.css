@@ -4,11 +4,11 @@
   flex-flow: row wrap;
 }
 .currentVideo {
-  flex: 2;
+  flex: 1;
 }
 .playlist,
 .video-config {
-  flex: 1;
+  flex: 2;
 }
 .playlist,
 .currentVideo,
