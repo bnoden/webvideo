@@ -14,8 +14,7 @@
 }
 .playlist,
 .currentVideo,
-.video-config,
-.App-header {
+.video-config {
   border-style: solid;
   border-color: #365D80;
   border-width: 2px;
@@ -33,11 +32,17 @@ span {
   height: auto;
 }
 .App-header {
+  border-style: solid;
+  border-color: #365D80;
+  border-width: 2px;
+  border-radius: 4px;
+  background-color: #020A0F;
+  color: #ebf2f7;
   text-align: center;
-  width: 98%;
+  max-width: 100%;
   height: 50px;
   display: block;
-  overflow: hidden;
+  margin: 6px;
 }
 
 .App-header p {
