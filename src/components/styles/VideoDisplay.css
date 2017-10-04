@@ -5,6 +5,8 @@
 }
 .currentVideo {
   flex: 1;
+  max-width: 640px;
+  max-height: 480px;
 }
 .playlist,
 .video-config {
@@ -23,6 +25,13 @@
   padding: 2px;
   margin: 6px;
 }
+span {
+  color: #020A0F;
+}
+.playlist {
+  max-width: 20%;
+  height: auto;
+}
 .App-header {
   text-align: center;
   width: 98%;
@@ -37,7 +46,12 @@
   margin: auto;
   padding-top: 12px;
 }
-
+@media all and (min-width: 900px) {
+  .playlist {
+    max-width: 100%;
+    max-height: 10%;
+  }
+}
 @media all and (min-width: 480px) {
   .playlist,
   .video-config {

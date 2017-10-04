@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 
+import { leadingZeroes } from './MeterReader';
+import './styles/OpacityControl.css';
+
 const defaultOpacity = 1.0;
 class OpacityControl extends Component {
   render() {
     return (
       <div className="opacity-control">
-        <label htmlFor="opacitySlider" id="opacitometer">
+        <label htmlFor="opacitySlider" id="opacitometer" className="meter">
           Opacity {(defaultOpacity * 100).toFixed()}%
         </label>
-        <br />
         <input
           ref="opacityslider"
           className="opacity-slider"
@@ -24,8 +26,8 @@ class OpacityControl extends Component {
               ).style.opacity = this.refs.opacityslider.value);
             document.getElementById(
               'opacitometer'
-            ).innerHTML = `Opacity ${(document.getElementById('video').style
-              .opacity * 100).toFixed()}%`;
+            ).innerHTML = `Opacity
+            <span className="leading-zeroes">${leadingZeroes((document.getElementById('video').style.opacity * 100).toFixed())}</span>${(document.getElementById('video').style.opacity * 100).toFixed()}%`;
           }}
         />
       </div>

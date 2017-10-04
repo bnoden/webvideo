@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import { leadingZeroes } from './MeterReader';
 import './styles/SpeedControl.css';
 
 const defaultSpeed = 1.0;
@@ -7,10 +8,9 @@ class SpeedControl extends Component {
   render() {
     return (
       <div className="speed-control">
-        <label htmlFor="speedSlider" id="speedometer">
+        <label htmlFor="speedSlider" id="speedometer" className="meter">
           Speed {(defaultSpeed * 100).toFixed()}%
         </label>
-        <br />
         <input
           ref="speedslider"
           className="speed-slider"
@@ -26,9 +26,7 @@ class SpeedControl extends Component {
               ).playbackRate = this.refs.speedslider.value);
             document.getElementById(
               'speedometer'
-            ).innerHTML = `Speed ${(document.getElementById('video')
-              .playbackRate * 100).toFixed()}%`;
-          }}
+            ).innerHTML = `Speed <span className="leading-zeroes">${leadingZeroes((document.getElementById('video').playbackRate * 100).toFixed())}</span>${(document.getElementById('video').playbackRate * 100).toFixed()}%`;}}
         />
       </div>
     );
