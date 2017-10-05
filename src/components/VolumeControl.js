@@ -6,13 +6,13 @@ class VolumeControl extends Component {
   render() {
     return (
       <div>
-        <div className="volume-control">
+        <div className="volume-control control">
           <label htmlFor="volumeSlider" id="volumeter" className="meter">
             Volume {(1.0 * 100).toFixed()}%
           </label>
           <input
             ref="volumeslider"
-            className="volume-slider"
+            className="volume-slider slider"
             type="range"
             min="0.0"
             max="1.0"

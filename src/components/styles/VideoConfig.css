@@ -11,13 +11,7 @@
   width: 90%;
   outline: none;
 }
-.speed-control,
-.opacity-control,
-.opacity-control0,
-.opacity-control2,
-.opacity-control3,
-.opacity-control4,
-.volume-control {
+.control {
   width: 90%;
   height: auto;
   font-size: 12px;
@@ -25,13 +19,7 @@
   justify-content: center;
   align-items: center;
 }
-.speed-slider,
-.opacity-slider,
-.opacity-slider0,
-.opacity-slider2,
-.opacity-slider3,
-.opacity-slider4,
-.volume-slider {
+.slider {
   max-width: 60%;
   max-height: 12px;
   outline: none;

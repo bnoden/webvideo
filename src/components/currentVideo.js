@@ -17,6 +17,10 @@ class CurrentVideo extends Component {
     return (
       <div className="currentVideo">
         <div className="buffer-layer">
+          <div className="layer layer-0"></div>
+          <div className="layer layer-2"></div>
+          <div className="layer layer-3"></div>
+          <div className="layer layer-4"></div>
           <video
             ref="curvid"
             src={demoSrc}
@@ -43,18 +47,10 @@ class CurrentVideo extends Component {
             preload="auto"
             controls
           />
-        <div className="layer layer0"></div>
-        <div className="layer layer2"></div>
-        <div className="layer layer3"></div>
-        <div className="layer layer4" id="layerB" onDoubleClick={()=>{rotateLayer()}}></div>
         </div>
       </div>
     );
   }
-}
-
-const rotateLayer = () => {
-  document.getElementById('layerB').style.transform = "translateY(25px)";
 }
 
 let prevMediaState = '';
