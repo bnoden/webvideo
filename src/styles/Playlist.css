@@ -1,0 +1,18 @@
+#drop_zone {
+  background-color: #4E5A69;
+  max-width:  90%;
+  max-height: 100px;
+  margin: auto;
+  text-align: center;
+  color: #EBEFF5;
+  font-weight: 600;
+  margin-top: 6px;
+  border-radius: 4px;
+  border-style: inset;
+  border-width: 3px;
+  border-color: #8D9094;
+}
+
+#drop_zone h3 {
+  padding-top: 12px;
+}
