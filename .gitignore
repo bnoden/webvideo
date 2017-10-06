@@ -11,6 +11,8 @@
 /build
 
 # misc
+package-lock.json
+firebase.json
 .*
 !/.gitignore
 .DS_Store
