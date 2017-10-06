@@ -12,7 +12,7 @@ const srcDisplay = () => {
   }
 }
 
-class CurrentVideo extends Component {
+class VideoPlayer extends Component {
   render() {
     return (
       <div className="currentVideo">
@@ -113,4 +113,4 @@ export const formatTime = (v, str) => {
 };
 
 export const video = () => document.getElementById('video');
-export default CurrentVideo;
+export default VideoPlayer;

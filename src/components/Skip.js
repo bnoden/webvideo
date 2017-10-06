@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { updateTime, video } from './CurrentVideo';
+import { updateTime, video } from './VideoPlayer';
 import './styles/Skip.css';
 
 class Skip extends Component {
