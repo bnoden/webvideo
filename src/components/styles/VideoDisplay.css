@@ -3,17 +3,17 @@
   display: flex;
   flex-flow: row wrap;
 }
-.currentVideo {
-  flex: 1;
+.VideoPlayer {
+  flex: 2;
   max-width: 640px;
   max-height: 480px;
 }
-.playlist,
+.Playlist,
 .video-config {
-  flex: 2;
+  flex: 1;
 }
-.playlist,
-.currentVideo,
+.VideoPlayer,
+.Playlist,
 .video-config {
   border-style: solid;
   border-color: #365D80;
@@ -25,9 +25,9 @@
   margin: 6px;
 }
 span {
-  color: #020A0F;
+  opacity: 0;
 }
-.playlist {
+.Playlist {
   max-width: 20%;
   height: auto;
 }
@@ -52,25 +52,25 @@ span {
   padding-top: 12px;
 }
 @media all and (min-width: 900px) {
-  .playlist {
+  .Playlist {
     max-width: 100%;
     max-height: 10%;
   }
 }
 @media all and (min-width: 480px) {
-  .playlist,
+  .Playlist,
   .video-config {
     flex: 1 auto;
   }
 }
 @media all and (min-width: 768px) {
-  .currentVideo {
+  .VideoPlayer {
     flex: 2 0px;
   }
-  .playlist {
+  .Playlist {
     order: 1;
   }
-  .currentVideo {
+  .VideoPlayer {
     order: 2;
   }
   .video-config {

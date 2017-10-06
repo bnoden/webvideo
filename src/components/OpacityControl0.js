@@ -3,13 +3,17 @@ import React, { Component } from 'react';
 import { leadingZeroes } from './MeterReader';
 import './styles/OpacityControl.css';
 
-const defaultOpacity = 0;
+const defaultOpacity = 1;
 class OpacityControl0 extends Component {
   render() {
     return (
       <div className="opacity-control-0 opacity-control control">
-        <label htmlFor="opacitySlider0" id="opacitometer0" className="opacitometer-0 opacitometer meter">
-          Layer 0 {(defaultOpacity * 100).toFixed()}%
+        <label
+          htmlFor="opacitySlider0"
+          id="opacitometer0"
+          className="opacitometer-0 opacitometer meter"
+        >
+          Video {(defaultOpacity * 100).toFixed()}%
         </label>
         <input
           ref="opacityslider0"
@@ -20,18 +24,19 @@ class OpacityControl0 extends Component {
           step="0.01"
           defaultValue={defaultOpacity}
           onInput={() => {
-            document.querySelector('.layer-0') &&
-              (document.querySelector(
-                '.layer-0'
-              ).style.opacity = this.refs.opacityslider0.value);
-            document.getElementById('opacitometer0').innerHTML = `Layer 0
+            const layers0 = document.querySelectorAll('.layer-0');
+            for (let i = 0; i < layers0.length; i++) {
+              layers0[i].style.opacity = this.refs.opacityslider0.value;
+            }
+            document.querySelector('.opacitometer-0').innerHTML = `Video
             <span className="leading-zeroes">${leadingZeroes(
-              (document.querySelector('.layer-0').style.opacity *
-                100).toFixed()
+              (document.querySelector('.layer-0').style.opacity * 100).toFixed()
             )}</span>${(document.querySelector('.layer-0').style.opacity *
               100).toFixed()}%`;
           }}
         />
+      <div>
+      </div>
       </div>
     );
   }

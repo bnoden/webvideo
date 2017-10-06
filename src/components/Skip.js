@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { updateTime, video } from './VideoPlayer';
+import { updateTime } from './VideoPlayer';
 import './styles/Skip.css';
 
 class Skip extends Component {
@@ -8,7 +8,7 @@ class Skip extends Component {
     const ffInput = () => document.getElementById('input-skip-ff');
     const rwInput = () => document.getElementById('input-skip-rw');
     return (
-      <div className="skip">
+      <div className="Skip">
         <input
           type="number"
           id="input-skip-rw"
@@ -19,7 +19,7 @@ class Skip extends Component {
         <button
           className="btn-skip-back"
           onClick={() => {
-            skip(video(), rwInput().value);
+            skip(rwInput().value);
             updateTime();
           }}
         >
@@ -28,7 +28,7 @@ class Skip extends Component {
         <button
           className="btn-skip-forward"
           onClick={() => {
-            skip(video(), ffInput().value);
+            skip(ffInput().value);
             updateTime();
           }}
         >
@@ -46,14 +46,15 @@ class Skip extends Component {
   }
 }
 
-const skip = (media, tVal) => {
-  if (media) {
-    const cTime = media.currentTime;
+const skip = (tVal) => {
+  const v = document.getElementById('loadedVideo');
+  if (v) {
+    const cTime = v.currentTime;
     const val = typeof tVal === Number ? tVal : +tVal;
     const result = cTime + val;
-    let minmax = 0 < cTime + val ? media.duration : 0;
+    let minmax = 0 < cTime + val ? v.duration : 0;
 
-    media.currentTime = minmax
+    v.currentTime = minmax
       ? minmax > result ? result : minmax
       : result > minmax ? result : minmax;
   }

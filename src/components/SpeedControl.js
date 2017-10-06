@@ -20,15 +20,15 @@ class SpeedControl extends Component {
           step="0.01"
           defaultValue={defaultSpeed}
           onInput={() => {
-            document.getElementById('video').playbackRate &&
+            document.getElementById('loadedVideo').playbackRate &&
               (document.getElementById(
-                'video'
+                'loadedVideo'
               ).playbackRate = this.refs.speedslider.value);
             document.getElementById(
               'speedometer'
             ).innerHTML = `Speed <span className="leading-zeroes">${leadingZeroes(
-              (document.getElementById('video').playbackRate * 100).toFixed()
-            )}</span>${(document.getElementById('video').playbackRate *
+              (document.getElementById('loadedVideo').playbackRate * 100).toFixed()
+            )}</span>${(document.getElementById('loadedVideo').playbackRate *
               100).toFixed()}%`;
           }}
         />

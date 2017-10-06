@@ -19,15 +19,15 @@ class VolumeControl extends Component {
             step="0.01"
             defaultValue="1.0"
             onInput={() => {
-              document.getElementById('video') &&
+              document.getElementById('loadedVideo') &&
                 (document.getElementById(
-                  'video'
+                  'loadedVideo'
                 ).volume = this.refs.volumeslider.value);
               document.getElementById(
                 'volumeter'
               ).innerHTML = `Volume <span className="leading-zeroes">${leadingZeroes(
-                (document.getElementById('video').volume * 100).toFixed()
-              )}</span>${(document.getElementById('video').volume *
+                (document.getElementById('loadedVideo').volume * 100).toFixed()
+              )}</span>${(document.getElementById('loadedVideo').volume *
                 100).toFixed()}%`;
               if (document.getElementById('btn-mute').checked) {
                 document.getElementById('btn-mute').checked = false;
@@ -63,12 +63,12 @@ const toggleMute = () => {
   }
   muteState();
   document.querySelector('.volume-slider').value = !muted ? 0 : beforeMuted;
-  document.getElementById('video').volume = !muted ? 0 : beforeMuted;
+  document.getElementById('loadedVideo').volume = !muted ? 0 : beforeMuted;
   document.getElementById('volumeter').innerHTML = !muted
     ? 'Volume Mute'
     : `Volume <span className="leading-zeroes">${leadingZeroes(
-        (document.getElementById('video').volume * 100).toFixed()
-      )}</span>${(document.getElementById('video').volume * 100).toFixed()}%`;
+        (document.getElementById('loadedVideo').volume * 100).toFixed()
+      )}</span>${(document.getElementById('loadedVideo').volume * 100).toFixed()}%`;
 };
 
 export default VolumeControl;

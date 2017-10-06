@@ -1,32 +1,42 @@
 import React, { Component } from 'react';
 
-import './styles/CurrentVideo.css';
+import './styles/VideoPlayer.css';
 import { demoVideo, demoToken, shortFileName } from '../access';
+import Video from './Video';
 
 export const demoSrc = 'https://' + demoVideo + demoToken;
 const srcDisplay = () => {
   if (document.getElementById('file-select').value) {
-    return shortFileName(document.getElementById('file-select').value)
+    return shortFileName(document.getElementById('file-select').value);
   } else {
     return shortFileName(demoSrc, 1);
   }
-}
+};
 
 class VideoPlayer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      video: { Video }
+    };
+  }
   render() {
     return (
-      <div className="currentVideo">
+      <div className="VideoPlayer">
         <div className="buffer-layer">
-          <div className="layer layer-0"></div>
-          <div className="layer layer-2"></div>
-          <div className="layer layer-3"></div>
-          <div className="layer layer-4"></div>
-          <video
-            ref="curvid"
+          <div className="layer layer-1 layer-color-1">
+
+          </div>
+          <div className="layer layer-0">
+          </div>
+          <Video
+            id="loadedVideo"
             src={demoSrc}
-            id="video"
-            className="vid"
-            onLoadedMetadata={()=>{updateTime()}}
+            className="Video loaded-video layer-0"
+            onLoadedMetadata={() => {
+              updateTime();
+            }}
             onInput={() => {
               updateTime();
             }}
@@ -35,17 +45,9 @@ class VideoPlayer extends Component {
                 updateTime();
               }
             }}
-            onClick={() => {
-              this.refs.curvid.paused
-                ? this.refs.curvid.play()
-                : this.refs.curvid.pause();
-              updateTime();
-            }}
             onSeeked={() => {
               updateTime(prevMediaState); // Else it gets stuck on 'Seeking' while paused.
             }}
-            preload="auto"
-            controls
           />
         </div>
       </div>
@@ -55,8 +57,8 @@ class VideoPlayer extends Component {
 
 let prevMediaState = '';
 //Override with str arg, else omit.
-const mediaState = (str, status) => {
-  const v = document.getElementById('video');
+const mediaState = (v, str, status) => {
+  v = () => document.getElementById('loadedVideo');
   switch (!0) {
     case str:
       status = str;
@@ -86,31 +88,33 @@ const mediaState = (str, status) => {
   return status;
 };
 
-export const updateTime = str => {
-  const v = document.getElementById('video');
-  // TODO: make separate display elements and proper Video component, this is horrific
-  document.getElementById('now-playing').innerHTML =
-  `<p>[ ${srcDisplay()} ]
+//Override with str arg, else omit.
+export const updateTime = (v, str) => {
+  v = document.getElementById('loadedVideo');
+  document.getElementById('now-playing').innerHTML = `<p>[ ${srcDisplay()} ]
   ${mediaState(str)} ${formatTime(v, 'current')} |
   -${formatTime(v, 'remaining')}</p>`;
 };
 
 export const formatTime = (v, str) => {
   const cTime = v.currentTime ? v.currentTime : v.duration;
-  const rTime = v.currentTime ? v.duration-v.currentTime : v.duration;
+  const rTime = v.currentTime ? v.duration - v.currentTime : v.duration;
   let t;
   // Might add more conditions later
-  if (str === 'remaining') { t = rTime; }
-  else if (str === 'current') { t = cTime; }
+  if (str === 'remaining') {
+    t = rTime;
+  } else if (str === 'current') {
+    t = cTime;
+  }
   const s = t >= 60 ? Math.floor(t % 60) : Math.floor(t);
   const m = t >= 60 ? Math.floor(t / 60) : 0;
   const h = t >= 3600 ? Math.floor(t / 3600) : 0;
-  const hStr = v.duration>=3600 && h.toString();
-  const mStr = m <= 10 && v.duration>=3600 ? `0${m}` : m.toString();
+  const hStr = v.duration >= 3600 && h.toString();
+  const mStr = m <= 10 && v.duration >= 3600 ? `0${m}` : m.toString();
   const sStr = s >= 10 ? s.toString() : `0${s}`;
-  const tStr = v.duration>=3600 ? `${hStr}:${mStr}:${sStr}`:`${mStr}:${sStr}`;
+  const tStr =
+    v.duration >= 3600 ? `${hStr}:${mStr}:${sStr}` : `${mStr}:${sStr}`;
   return tStr;
 };
 
-export const video = () => document.getElementById('video');
 export default VideoPlayer;

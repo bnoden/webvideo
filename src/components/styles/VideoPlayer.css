@@ -1,18 +1,15 @@
-.currentVideo {
-  z-index: 1;
-}
 
 .buffer-layer {
   width: 640px;
   height: 600px;
   left: 50%;
-  z-index: 1;
+  z-index: 0;
   position: relative;
   top: 50%;
   transform: translate(-50%, -50%);
 }
 
-.vid {
+.loaded-video {
   display: block;
   position: fixed;
   width: 100%;
@@ -28,25 +25,11 @@
 }
 
 .layer-0 {
-  z-index: 1;
-  background-color: #fff;
-  opacity: 0;
+  z-index: 0;
 }
-.vid {
-  z-index: 2;
+.layer-1 {
+  z-index: 1;
 }
 .layer-2 {
-  z-index: 3;
-  background-color: #00ff00;
-  opacity: 0;
-}
-.layer-3 {
-  z-index: 4;
-  background-color: #ff0000;
-  opacity: 0;
-}
-.layer-4 {
-  z-index: 5;
-  background-color: #0000ff;
-  opacity: 0;
+  z-index: 2;
 }
