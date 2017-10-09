@@ -1,18 +1,6 @@
 import React, { Component } from 'react';
 
 import './styles/Playlist.css';
-import Video from './Video';
-
-const videolist = [
-  {
-    origin: 'local',
-    video: ''
-  },
-  {
-    origin: 'web',
-    video: ''
-  }
-];
 
 class Playlist extends Component {
   constructor(props) {
@@ -23,18 +11,7 @@ class Playlist extends Component {
     };
   }
 
-  getVideo(index) {
-    let currentVideo = index;
-    if (currentVideo < 0) {
-      currentVideo = videolist.length - 1;
-    } else if (currentVideo >= videolist.length) {
-      currentVideo = 0;
-    }
-    this.setState({ currentVideo });
-  }
-
   render() {
-    const { origin, video } = videolist[this.state.currentVideo];
     return (
       <div className="Playlist">
         <div id="drop_zone">
@@ -46,20 +23,6 @@ class Playlist extends Component {
               localSrc();
             }}
           />
-        </div>
-
-        <div>
-          <Video origin={origin} video={video} />
-          <p>
-            {origin}:
-            {video}:
-          </p>
-          <button onClick={this.getVideo.bind(this, this.state.videolist - 1)} disabled>
-            Prev
-          </button>
-          <button onClick={this.getVideo.bind(this, this.state.videolist + 1)} disabled>
-            Next
-          </button>
         </div>
       </div>
     );

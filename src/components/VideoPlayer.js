@@ -21,18 +21,22 @@ class VideoPlayer extends Component {
       video: { Video }
     };
   }
+
+  handleClick = (e) => {
+    e.target.paused ? e.target.play() : e.target.pause();
+    updateTime();
+  }
+
   render() {
     return (
       <div className="VideoPlayer">
         <div className="buffer-layer">
-          <div className="layer layer-1 layer-color-1">
-
-          </div>
           <div className="layer layer-0">
           </div>
           <Video
-            id="loadedVideo"
             src={demoSrc}
+            id="loadedVideo"
+            onClick={this.handleClick}
             className="Video loaded-video layer-0"
             onLoadedMetadata={() => {
               updateTime();
@@ -48,7 +52,11 @@ class VideoPlayer extends Component {
             onSeeked={() => {
               updateTime(prevMediaState); // Else it gets stuck on 'Seeking' while paused.
             }}
-          />
+          >
+
+          </Video>
+          <div className="layer layer-1 layer-color-1">
+          </div>
         </div>
       </div>
     );
