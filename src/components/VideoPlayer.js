@@ -99,7 +99,7 @@ const mediaState = (v, str, status) => {
 //Override with str arg, else omit.
 export const updateTime = (v, str) => {
   v = document.getElementById('loadedVideo');
-  document.getElementById('now-playing').innerHTML = `<p>[ ${srcDisplay()} ]
+  document.querySelector('.now-playing').innerHTML = `<p>[ ${srcDisplay()} ]
   ${mediaState(str)} ${formatTime(v, 'current')} |
   -${formatTime(v, 'remaining')}</p>`;
 };

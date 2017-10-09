@@ -10,7 +10,7 @@ class OpacityControl1 extends Component {
     return (
       <div className="opacity-control-1 opacity-control control">
         <label htmlFor="opacitySlider1" id="opacitometer1" className="opacitometer-1 opacitometer meter layercolor-1">
-          Filter {(defaultOpacity * 100).toFixed()}%
+          {(defaultOpacity * 100).toFixed()}%
         </label>
         <input
           ref="opacityslider1"
@@ -25,7 +25,7 @@ class OpacityControl1 extends Component {
             for (let i = 0; i < layers1.length; i++) {
               layers1[i].style.opacity = this.refs.opacityslider1.value;
             }
-            document.querySelector('.opacitometer-1').innerHTML = `Filter
+            document.querySelector('.opacitometer-1').innerHTML = `
             <span className="leading-zeroes">${leadingZeroes(
               (document.querySelector('.layer-1').style.opacity *
                 100).toFixed()

@@ -1,12 +1,7 @@
-.Playlist {
-  text-align: left;
-  margin:auto;
-}
-
 #drop_zone {
   background-color: #4E5A69;
   max-width:  90%;
-  max-height: 100px;
+  max-height: auto;
   margin: auto;
   text-align: center;
   color: #EBEFF5;

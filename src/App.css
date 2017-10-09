@@ -2,3 +2,42 @@
 .App {
   text-align: left;
 }
+
+.App-header {
+  max-width: 100%;
+  height: 50px;
+  margin: 6px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.now-playing {
+  width: 640px;
+}
+.now-playing, .Playlist {
+  border-style: solid;
+  border-color: #365D80;
+  border-width: 2px;
+  border-radius: 4px;
+  background-color: #020A0F;
+  color: #ebf2f7;
+  text-align: center;
+  height: 100%;
+  margin: justify;
+}
+
+.App-header p {
+  font-family: Verdana, Arial;
+  font-size: 18px;
+  margin: auto;
+  padding-top: 12px;
+}
+
+#now-playing {
+  text-align: center;
+}
+
+.Playlist {
+  text-align: right;
+}
