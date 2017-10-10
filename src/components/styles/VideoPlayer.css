@@ -1,3 +1,7 @@
+.btn-play {
+  padding: 4px;
+  margin: 4px;
+}
 .VideoPlayer {
   width: 800px;
   height: 600px;

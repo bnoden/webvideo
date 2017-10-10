@@ -7,7 +7,7 @@ class Video extends Component {
     super(props);
 
     this.state = {
-      src: ''
+      mediaState: ''
     };
   }
 
@@ -16,13 +16,14 @@ class Video extends Component {
       <div>
         <video
           src={this.props.src}
+          mediaState={this.props.mediaState}
           onClick={this.props.onClick}
           id={this.props.id}
           className={this.props.className}
           onLoadedMetadata={this.props.onLoadedMetadata}
           onInput={this.props.onInput}
           onTimeUpdate={this.props.onTimeUpdate}
-          onSeeked={this.props.onSeeked}
+          onChange={this.props.onChange}
           preload="auto"
           controls
         />

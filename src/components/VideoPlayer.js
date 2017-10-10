@@ -47,6 +47,8 @@ class VideoPlayer extends Component {
                     ? 'Seeking'
                     : e.target.paused ? 'Paused' : 'Playing'
     });
+    document.querySelector('.progress-slider').max = e.target.duration;
+    document.querySelector('.progress-slider').value = e.target.currentTime;
     document.querySelector('.now-playing').innerHTML = `<p>[ ${srcDisplay()} ]
     ${this.state.mediaState} ${this.formatTime(e.target, 'current')} |
     -${this.formatTime(e.target, 'remaining')}</p>`;
@@ -57,7 +59,7 @@ class VideoPlayer extends Component {
     const cTime = v.currentTime ? v.currentTime : v.duration;
     const rTime = v.currentTime ? v.duration - v.currentTime : v.duration;
     let t;
-    
+
     // Might add more conditions later
     if (str === 'remaining') {
       t = rTime;
@@ -82,13 +84,14 @@ class VideoPlayer extends Component {
           <div className="layer layer-0" />
           <Video
             src={demoSrc}
+            mediaState={this.updateTime}
             id="loadedVideo"
             onClick={this.handleClick}
             className="Video loaded-video layer-2"
             onLoadedMetadata={this.updateTime}
             onInput={this.updateTime}
-            mediaState={this.mediaState}
             onTimeUpdate={this.updateTime}
+            onChange={this.updateTime}
           />
           <div id="layerOne" className="layer layer-1 layer-color" />
         </div>
