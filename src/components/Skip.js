@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import { updateTime } from './VideoPlayer';
 import './styles/Skip.css';
 
 class Skip extends Component {
@@ -22,7 +21,6 @@ class Skip extends Component {
             className="btn-skip-back"
             onClick={() => {
               skip(rwInput().value);
-              updateTime();
             }}
           >
             REW
@@ -31,7 +29,6 @@ class Skip extends Component {
             className="btn-skip-forward"
             onClick={() => {
               skip(ffInput().value);
-              updateTime();
             }}
           >
             FF

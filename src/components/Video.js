@@ -11,8 +11,6 @@ class Video extends Component {
     };
   }
 
-
-
   render() {
     return (
       <div>
@@ -27,9 +25,7 @@ class Video extends Component {
           onSeeked={this.props.onSeeked}
           preload="auto"
           controls
-        >
-      </video>
-
+        />
       </div>
     );
   }

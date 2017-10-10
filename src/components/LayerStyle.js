@@ -10,12 +10,10 @@ class LayerStyle extends Component {
   handleInput = (e) => {
     this.setState({value: e.target.value})
     const layerOne = '#layerOne';
-    const layerText = '.layer-text';
+    const layerText = '#layerText';
     const qsLayer = (el) => document.querySelector(el);
     qsLayer(layerOne).style.backgroundColor = e.target.value;
-    for (let i = 0; i < qsLayer(layerText).length; i++) {
-      qsLayer(layerText)[i].style.color = e.target.value;
-    }
+    qsLayer(layerText).style.color = e.target.value;
   };
 
   render() {

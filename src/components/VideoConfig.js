@@ -12,6 +12,6 @@ export const VideoConfig = () =>
     <Skip />
     <SpeedControl />
     <VolumeControl />
-    <LayerControl />
     <OpacityControl />
+    <LayerControl />
   </div>;

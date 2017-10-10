@@ -27,13 +27,13 @@ class LayerControl extends Component {
     return (
       <div className="opacity-control-1 opacity-control control">
         <div className="dual-label">
-          <label htmlFor="colorWell" className="opacitometer meter layer-text">
+          <label htmlFor="colorWell" className="opacitometer meter">
             <LayerStyle
               id="colorWell"
               defaultValue={defaultColor}
             />
           </label>
-          <label htmlFor="opacitySlider1" id="opacitometer1" className="opacitometer-1 opacitometer meter layer-text">
+          <label htmlFor="opacitySlider1" id="layerText" className="opacitometer-1 opacitometer meter" style={{color: defaultColor}}>
             {(defaultLayerOpacity * 100).toFixed()}%
           </label>
         </div>

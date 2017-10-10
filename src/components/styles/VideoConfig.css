@@ -18,7 +18,6 @@
   padding-right: 8px;
   padding-top: 8px;
 }
-
 @media screen and (max-width: 1125px) {
   .VideoPlayer {
     width: 600px;
