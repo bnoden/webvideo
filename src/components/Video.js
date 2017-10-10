@@ -16,8 +16,9 @@ class Video extends Component {
       <div>
         <video
           src={this.props.src}
-          mediaState={this.props.mediaState}
+          onPause={this.props.onPause}
           onClick={this.props.onClick}
+          onDoubleClick={this.props.onDoubleClick}
           id={this.props.id}
           className={this.props.className}
           onLoadedMetadata={this.props.onLoadedMetadata}
@@ -25,7 +26,6 @@ class Video extends Component {
           onTimeUpdate={this.props.onTimeUpdate}
           onChange={this.props.onChange}
           preload="auto"
-          controls
         />
       </div>
     );

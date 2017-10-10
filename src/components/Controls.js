@@ -11,6 +11,7 @@ class Controls extends Component {
   togglePaused = () => {
     const v = document.getElementById('loadedVideo');
     const btnPlay = document.querySelector('.btn-play');
+
     if (v.paused) {
       v.play();
       btnPlay.innerHTML = 'Pause';
@@ -18,6 +19,7 @@ class Controls extends Component {
       v.pause();
       btnPlay.innerHTML = 'Play';
     }
+
   }
 
   handleInput = (e) => {
@@ -38,8 +40,7 @@ class Controls extends Component {
             defaultValue="0"
             onInput={this.handleInput}
             min="0"
-            max="100"
-            step="1"
+            step="0.2"
           />
         </div>
       </div>

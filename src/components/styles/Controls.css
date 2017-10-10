@@ -14,13 +14,15 @@
 }
 
 .btn-play {
-  width: 5%;
+  width: 3em;
   height: 18px;
   padding: 4px;
   margin: 4px;
   background-color: #365D80;
+  border-radius: 3px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 1em;
+  text-align: center;
 }
 
 #progressSlider {

@@ -6,7 +6,7 @@ import Video from './Video';
 
 export const demoSrc = 'https://' + demoVideo + demoToken;
 // let prevMediaState = '';
-const srcDisplay = () => {
+export const srcDisplay = () => {
   if (document.getElementById('file-select').value) {
     return shortFileName(document.getElementById('file-select').value);
   } else {
@@ -23,11 +23,23 @@ class VideoPlayer extends Component {
     };
   }
 
+  dblClick = e => {
+    if (e.target.requestFullscreen) {
+      e.target.requestFullscreen();
+    } else if (e.target.mozRequestFullScreen) {
+      e.target.mozRequestFullScreen(); // Firefox
+    } else if (e.target.webkitRequestFullscreen) {
+      e.target.webkitRequestFullscreen(); // Chrome and Safari
+    }
+  };
+
   handleClick = e => {
     e.target.paused ? e.target.play() : e.target.pause();
     this.setState({
       mediaState: e.target.paused ? 'Paused' : 'Playing'
     });
+    document.querySelector('.btn-play').innerHTML =
+      this.state.mediaState === 'Playing' ? 'Play' : 'Pause';
   };
 
   updateTime = e => {
@@ -50,31 +62,8 @@ class VideoPlayer extends Component {
     document.querySelector('.progress-slider').max = e.target.duration;
     document.querySelector('.progress-slider').value = e.target.currentTime;
     document.querySelector('.now-playing').innerHTML = `<p>[ ${srcDisplay()} ]
-    ${this.state.mediaState} ${this.formatTime(e.target, 'current')} |
-    -${this.formatTime(e.target, 'remaining')}</p>`;
-  };
-
-  formatTime = (v, str) => {
-    v = document.getElementById('loadedVideo');
-    const cTime = v.currentTime ? v.currentTime : v.duration;
-    const rTime = v.currentTime ? v.duration - v.currentTime : v.duration;
-    let t;
-
-    // Might add more conditions later
-    if (str === 'remaining') {
-      t = rTime;
-    } else if (str === 'current') {
-      t = cTime;
-    }
-    const s = t >= 60 ? Math.floor(t % 60) : Math.floor(t);
-    const m = t >= 60 ? Math.floor(t / 60) : 0;
-    const h = t >= 3600 ? Math.floor(t / 3600) : 0;
-    const hStr = v.duration >= 3600 && h.toString();
-    const mStr = m <= 10 && v.duration >= 3600 ? `0${m}` : m.toString();
-    const sStr = s >= 10 ? s.toString() : `0${s}`;
-    const tStr =
-      v.duration >= 3600 ? `${hStr}:${mStr}:${sStr}` : `${mStr}:${sStr}`;
-    return tStr;
+    ${this.state.mediaState} ${formatTime(e.target, 'current')} |
+    -${formatTime(e.target, 'remaining')}</p>`;
   };
 
   render() {
@@ -86,7 +75,9 @@ class VideoPlayer extends Component {
             src={demoSrc}
             mediaState={this.updateTime}
             id="loadedVideo"
+            onPause={this.updateTime}
             onClick={this.handleClick}
+            onDoubleClick={this.dblClick}
             className="Video loaded-video layer-2"
             onLoadedMetadata={this.updateTime}
             onInput={this.updateTime}
@@ -99,5 +90,28 @@ class VideoPlayer extends Component {
     );
   }
 }
+
+export const formatTime = (v, str) => {
+  v = document.getElementById('loadedVideo');
+  const cTime = v.currentTime ? v.currentTime : v.duration;
+  const rTime = v.currentTime ? v.duration - v.currentTime : v.duration;
+  let t;
+
+  // Might add more conditions later
+  if (str === 'remaining') {
+    t = rTime;
+  } else if (str === 'current') {
+    t = cTime;
+  }
+  const s = t >= 60 ? Math.floor(t % 60) : Math.floor(t);
+  const m = t >= 60 ? Math.floor(t / 60) : 0;
+  const h = t >= 3600 ? Math.floor(t / 3600) : 0;
+  const hStr = v.duration >= 3600 && h.toString();
+  const mStr = m <= 10 && v.duration >= 3600 ? `0${m}` : m.toString();
+  const sStr = s >= 10 ? s.toString() : `0${s}`;
+  const tStr =
+    v.duration >= 3600 ? `${hStr}:${mStr}:${sStr}` : `${mStr}:${sStr}`;
+  return tStr;
+};
 
 export default VideoPlayer;
