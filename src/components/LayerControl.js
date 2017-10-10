@@ -11,9 +11,9 @@ class LayerControl extends Component {
 
   layerOpacityInput = (e) => {
     this.setState({value: e.target.value})
-    const layers1 = document.querySelectorAll('.layer-1');
-    for (let i = 0; i < layers1.length; i++) {
-      layers1[i].style.opacity = e.target.value;
+    const layers = document.querySelectorAll('.layer-1');
+    for (let layer of layers) {
+      layer.style.opacity = e.target.value;
     }
     document.querySelector('.opacitometer-1').innerHTML = `
     <span className="leading-zeroes">${leadingZeroes(

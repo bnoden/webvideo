@@ -16,9 +16,9 @@ class OpacityControl extends Component {
 
   videoOpacityInput = (e) => {
     this.setState({value: e.target.value})
-    const layers0 = document.querySelectorAll('.layer-2');
-    for (let i = 0; i < layers0.length; i++) {
-      layers0[i].style.opacity = e.target.value;
+    const layers = document.querySelectorAll('.layer-2');
+    for (let layer of layers) {
+      layer.style.opacity = e.target.value;
     }
     document.querySelector('.opacitometer-0').innerHTML = `Video
     <span className="leading-zeroes">${leadingZeroes(
