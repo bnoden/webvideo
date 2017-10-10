@@ -30,10 +30,6 @@ class VideoPlayer extends Component {
     });
   };
 
-  mediaState(e) {
-    return e.target.paused ? 'Paused' : 'Playing';
-  }
-
   updateTime = e => {
     this.setState({
       mediaState:
@@ -51,10 +47,9 @@ class VideoPlayer extends Component {
                     ? 'Seeking'
                     : e.target.paused ? 'Paused' : 'Playing'
     });
-    const v = document.getElementById('loadedVideo');
     document.querySelector('.now-playing').innerHTML = `<p>[ ${srcDisplay()} ]
-    ${this.state.mediaState} ${this.formatTime(v, 'current')} |
-    -${this.formatTime(v, 'remaining')}</p>`;
+    ${this.state.mediaState} ${this.formatTime(e.target, 'current')} |
+    -${this.formatTime(e.target, 'remaining')}</p>`;
   };
 
   formatTime = (v, str) => {
@@ -62,6 +57,7 @@ class VideoPlayer extends Component {
     const cTime = v.currentTime ? v.currentTime : v.duration;
     const rTime = v.currentTime ? v.duration - v.currentTime : v.duration;
     let t;
+    
     // Might add more conditions later
     if (str === 'remaining') {
       t = rTime;
