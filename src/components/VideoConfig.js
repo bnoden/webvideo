@@ -2,8 +2,8 @@ import React from 'react';
 
 import SpeedControl from './SpeedControl';
 import Skip from './Skip';
-import OpacityControl0 from './OpacityControl0';
-import OpacityControl1 from './OpacityControl1';
+import OpacityControl from './OpacityControl';
+import LayerControl from './LayerControl';
 import VolumeControl from './VolumeControl';
 import './styles/VideoConfig.css';
 
@@ -12,6 +12,6 @@ export const VideoConfig = () =>
     <Skip />
     <SpeedControl />
     <VolumeControl />
-    <OpacityControl0 />
-    <OpacityControl1 />
+    <LayerControl />
+    <OpacityControl />
   </div>;

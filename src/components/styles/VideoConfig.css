@@ -1,43 +1,57 @@
 .video-config {
   display: flex;
-  max-width: 30%;
+  min-width: 10%;
+  max-width: 20%;
+  min-height: 40px;
+  max-height: 400px;
   flex-flow: column wrap;
   -webkit-user-select: none; /* Safari */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
 }
-.skip {
-  width: 90%;
-  outline: none;
-}
+
 .control {
-  height: auto;
-  width: 90%;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  padding: 6px;
-}
-.slider {
-  height: 16px;
-  text-align: left;
-  outline: none;
-  order: 2;
-}
-.mute-box {
-  font-size: 10px;
-  order: 3;
-  text-align: left;
-}
-.meter {
-  order: 1;
-  text-align: right;
-  max-width: 40%;
-  margin-right: 12px;
-  outline: none;
+  max-width: 100%;
+  text-align: center;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 8px;
 }
 
+@media screen and (max-width: 1125px) {
+  .VideoPlayer {
+    width: 600px;
+    height: 450px;
+  }
+  .buffer-layer {
+    width: 600px;
+    height: 450px;
+  }
+
+  .loaded-video {
+    width: 600px;
+    height: 450px;
+  }
+  .control {
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 825px) {
+  .VideoPlayer {
+    width: 400px;
+    height: 300px;
+  }
+  .buffer-layer {
+    width: 400px;
+    height: 300px;
+  }
+
+  .loaded-video {
+    width: 400px;
+    height: 300px;
+  }
+}
 input[type=range]:focus::-ms-fill-lower {
   background: #7dd199;
 }

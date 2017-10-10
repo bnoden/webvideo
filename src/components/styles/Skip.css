@@ -1,11 +1,11 @@
 .Skip {
-  padding: 6px;
+  padding-bottom: 18px;
 }
 
 #input-skip-ff,
 #input-skip-rw {
   font-size: 12px;
-  width: 36px;
+  max-width: 36px;
   border-radius: 12px;
   padding-left: 3px;
   text-align: right;

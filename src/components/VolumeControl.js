@@ -7,7 +7,7 @@ class VolumeControl extends Component {
     return (
       <div>
         <div className="volume-control control">
-          <label htmlFor="volumeSlider" id="volumeter" className="meter">
+          <label htmlFor="volumeSlider" id="volumeter" className="volume-meter meter">
             Volume {(1.0 * 100).toFixed()}%
           </label>
           <input
@@ -35,6 +35,7 @@ class VolumeControl extends Component {
               }
             }}
           />
+
         </div>
         <div className="mute-box">
           <input

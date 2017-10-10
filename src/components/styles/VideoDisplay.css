@@ -8,10 +8,6 @@
   max-height: 600px;
 }
 
-.video-config {
-  max-width: 300px;
-  max-height: 300px;
-}
 .VideoPlayer,
 .video-config {
   border-style: solid;
@@ -20,8 +16,8 @@
   border-radius: 4px;
   background-color: #020A0F;
   color: #ebf2f7;
-  padding: 2px;
-  margin: 6px;
+  padding: 0px 2px 0px 2px;
+  margin: 0px 6px 0px 6px;
 }
 span {
   opacity: 0;

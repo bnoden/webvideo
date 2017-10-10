@@ -1,3 +1,17 @@
 #layerOne {
   background-color: rgba(214, 136, 0, 1);
 }
+
+.opacitometer-1 {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.dual-label {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}

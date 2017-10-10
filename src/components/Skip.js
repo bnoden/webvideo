@@ -8,39 +8,42 @@ class Skip extends Component {
     const ffInput = () => document.getElementById('input-skip-ff');
     const rwInput = () => document.getElementById('input-skip-rw');
     return (
-      <div className="Skip">
-        <input
-          type="number"
-          id="input-skip-rw"
-          min="-60"
-          max="0"
-          defaultValue="-15"
-        />
-        <button
-          className="btn-skip-back"
-          onClick={() => {
-            skip(rwInput().value);
-            updateTime();
-          }}
-        >
-          REW
-        </button>
-        <button
-          className="btn-skip-forward"
-          onClick={() => {
-            skip(ffInput().value);
-            updateTime();
-          }}
-        >
-          FF
-        </button>
-        <input
-          type="number"
-          id="input-skip-ff"
-          defaultValue="15"
-          min="0"
-          max="60"
-        />
+      <div className="Skip control">
+        <label htmlFor="Skip" className="skip-meter meter">Skip</label>
+        <div className="slider">
+          <input
+            type="number"
+            id="input-skip-rw"
+            min="-60"
+            max="0"
+            defaultValue="-15"
+          />
+          <button
+            className="btn-skip-back"
+            onClick={() => {
+              skip(rwInput().value);
+              updateTime();
+            }}
+          >
+            REW
+          </button>
+          <button
+            className="btn-skip-forward"
+            onClick={() => {
+              skip(ffInput().value);
+              updateTime();
+            }}
+          >
+            FF
+          </button>
+          <input
+            type="number"
+            id="input-skip-ff"
+            defaultValue="15"
+            min="0"
+            max="60"
+          />
+        </div>
       </div>
     );
   }
