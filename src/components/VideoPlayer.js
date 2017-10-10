@@ -37,7 +37,7 @@ class VideoPlayer extends Component {
             src={demoSrc}
             id="loadedVideo"
             onClick={this.handleClick}
-            className="Video loaded-video layer-0"
+            className="Video loaded-video layer-2"
             onLoadedMetadata={() => {
               updateTime();
             }}
@@ -55,7 +55,7 @@ class VideoPlayer extends Component {
           >
 
           </Video>
-          <div className="layer layer-1 layer-color-1">
+          <div id="layerOne" className="layer layer-1 layer-color">
           </div>
         </div>
       </div>

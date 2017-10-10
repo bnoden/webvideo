@@ -9,11 +9,10 @@
   margin: 6px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
 }
 
 .now-playing {
-  width: 640px;
+  width: 800px;
 }
 .now-playing, .Playlist {
   border-style: solid;
@@ -36,8 +35,10 @@
 
 #now-playing {
   text-align: center;
+
 }
 
 .Playlist {
-  text-align: right;
+  text-align: center;
+  margin-left: 16px;
 }

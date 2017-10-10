@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 
 import { leadingZeroes } from './MeterReader';
 import './styles/OpacityControl.css';
-import { setLayerColor } from './LayerStyle';
+import LayerStyle from './LayerStyle';
 
-const defaultOpacity = 0;
+const defaultOpacity = 1;
+const defaultColor = '#d68800';
 class OpacityControl1 extends Component {
+
   render() {
     return (
       <div className="opacity-control-1 opacity-control control">
-        <label htmlFor="opacitySlider1" id="opacitometer1" className="opacitometer-1 opacitometer meter layercolor-1">
+        <label htmlFor="opacitySlider1" id="opacitometer1" className="opacitometer-1 opacitometer meter layer-text">
           {(defaultOpacity * 100).toFixed()}%
         </label>
         <input
@@ -33,14 +35,9 @@ class OpacityControl1 extends Component {
               100).toFixed()}%`;
           }}
         />
-        <input
-          type="color"
-          ref="layercolor1"
-          className="layer-color"
-          onInput={() => {
-            setLayerColor('.layer-1', this.refs.layercolor1, 'bgcolor', '.opacitometer-1')
-            setLayerColor('.layercolor-1', this.refs.layercolor1, 'color', '.opacitometer-1')
-          }}
+        <LayerStyle
+          id="colorWell"
+          defaultValue={defaultColor}
         />
       </div>
     );

@@ -1,5 +1,6 @@
 .video-config {
   display: flex;
+  max-width: 30%;
   flex-flow: column wrap;
   -webkit-user-select: none; /* Safari */
   -moz-user-select: none; /* Firefox */
@@ -12,7 +13,7 @@
 }
 .control {
   height: auto;
-  width: 50%;
+  width: 90%;
   font-size: 14px;
   display: flex;
   align-items: center;
