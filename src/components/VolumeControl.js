@@ -3,39 +3,48 @@ import React, { Component } from 'react';
 import { leadingZeroes } from './MeterReader';
 
 class VolumeControl extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { value: '' };
+  }
+
+  handleInput = e => {
+    this.setState({ value: e.target.value });
+    document.getElementById('loadedVideo') &&
+      (document.getElementById('loadedVideo').volume = this.state.value);
+    document.getElementById(
+      'volumeter'
+    ).innerHTML = `Volume <span className="leading-zeroes">${leadingZeroes(
+      (document.getElementById('loadedVideo').volume * 100).toFixed()
+    )}</span>${(document.getElementById('loadedVideo').volume *
+      100).toFixed()}%`;
+    if (document.getElementById('btn-mute').checked) {
+      document.getElementById('btn-mute').checked = false;
+      muteState();
+    }
+  };
+
   render() {
     return (
       <div>
         <div className="volume-control control">
-          <label htmlFor="volumeSlider" id="volumeter" className="volume-meter meter">
+          <label
+            htmlFor="volumeSlider"
+            id="volumeter"
+            className="volume-meter meter"
+          >
             Volume {(1.0 * 100).toFixed()}%
           </label>
           <input
-            ref="volumeslider"
             className="volume-slider slider"
             type="range"
             min="0.0"
             max="1.0"
             step="0.01"
             defaultValue="1.0"
-            onInput={() => {
-              document.getElementById('loadedVideo') &&
-                (document.getElementById(
-                  'loadedVideo'
-                ).volume = this.refs.volumeslider.value);
-              document.getElementById(
-                'volumeter'
-              ).innerHTML = `Volume <span className="leading-zeroes">${leadingZeroes(
-                (document.getElementById('loadedVideo').volume * 100).toFixed()
-              )}</span>${(document.getElementById('loadedVideo').volume *
-                100).toFixed()}%`;
-              if (document.getElementById('btn-mute').checked) {
-                document.getElementById('btn-mute').checked = false;
-                muteState();
-              }
-            }}
+            onInput={this.handleInput}
           />
-
         </div>
         <div className="mute-box">
           <input
@@ -69,7 +78,8 @@ const toggleMute = () => {
     ? 'Volume Mute'
     : `Volume <span className="leading-zeroes">${leadingZeroes(
         (document.getElementById('loadedVideo').volume * 100).toFixed()
-      )}</span>${(document.getElementById('loadedVideo').volume * 100).toFixed()}%`;
+      )}</span>${(document.getElementById('loadedVideo').volume *
+        100).toFixed()}%`;
 };
 
 export default VolumeControl;

@@ -5,6 +5,26 @@ import './styles/SpeedControl.css';
 
 const defaultSpeed = 1.0;
 class SpeedControl extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { value: '' };
+  }
+
+  handleInput = e => {
+    this.setState({ value: e.target.value });
+    document.getElementById('loadedVideo').playbackRate &&
+      (document.getElementById(
+        'loadedVideo'
+      ).playbackRate = this.state.value);
+    document.getElementById(
+      'speedometer'
+    ).innerHTML = `Speed <span className="leading-zeroes">${leadingZeroes(
+      (document.getElementById('loadedVideo').playbackRate * 100).toFixed()
+    )}</span>${(document.getElementById('loadedVideo').playbackRate *
+      100).toFixed()}%`;
+  }
+
   render() {
     return (
       <div className="speed-control control">
@@ -12,25 +32,13 @@ class SpeedControl extends Component {
           Speed {(defaultSpeed * 100).toFixed()}%
         </label>
         <input
-          ref="speedslider"
           className="speed-slider slider"
           type="range"
           min="0.01"
           max="4.0"
           step="0.01"
           defaultValue={defaultSpeed}
-          onInput={() => {
-            document.getElementById('loadedVideo').playbackRate &&
-              (document.getElementById(
-                'loadedVideo'
-              ).playbackRate = this.refs.speedslider.value);
-            document.getElementById(
-              'speedometer'
-            ).innerHTML = `Speed <span className="leading-zeroes">${leadingZeroes(
-              (document.getElementById('loadedVideo').playbackRate * 100).toFixed()
-            )}</span>${(document.getElementById('loadedVideo').playbackRate *
-              100).toFixed()}%`;
-          }}
+          onInput={this.handleInput}
         />
       </div>
     );
