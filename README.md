@@ -5,4 +5,4 @@ Practical demonstrations of HTML5 Video with React.
 npm install  
 npm start  
 
-  
+For PC only. Not suitable for mobile.  
