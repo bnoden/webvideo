@@ -5,13 +5,11 @@ import { demoVideo, demoToken, shortFileName } from '../access';
 import Video from './Video';
 
 export const demoSrc = 'https://' + demoVideo + demoToken;
-// let prevMediaState = '';
+
 export const srcDisplay = () => {
-  if (document.getElementById('file-select').value) {
-    return shortFileName(document.getElementById('file-select').value);
-  } else {
-    return shortFileName(demoSrc, 1);
-  }
+  return document.getElementById('file-select').value
+    ? shortFileName(document.getElementById('file-select').value)
+    : shortFileName(demoSrc, 1);
 };
 
 class VideoPlayer extends Component {
