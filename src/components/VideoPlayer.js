@@ -104,9 +104,9 @@ export const formatTime = (v, str) => {
   const s = t >= 60 ? Math.floor(t % 60) : Math.floor(t);
   const m = t >= 60 ? Math.floor(t / 60) : 0;
   const h = t >= 3600 ? Math.floor(t / 3600) : 0;
-  const hStr = v.duration >= 3600 && h.toString();
-  const mStr = m <= 10 && v.duration >= 3600 ? `0${m}` : m.toString();
-  const sStr = s >= 10 ? s.toString() : `0${s}`;
+  const hStr = v.duration >= 3600 && `${h}`;
+  const mStr = m <= 10 && v.duration >= 3600 ? `0${m}` : `${m}`;
+  const sStr = s >= 10 ? `${s}` : `0${s}`;
   const tStr =
     v.duration >= 3600 ? `${hStr}:${mStr}:${sStr}` : `${mStr}:${sStr}`;
   return tStr;
