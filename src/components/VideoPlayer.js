@@ -107,9 +107,7 @@ export const formatTime = (v, str) => {
   const hStr = v.duration >= 3600 && `${h}`;
   const mStr = m <= 10 && v.duration >= 3600 ? `0${m}` : `${m}`;
   const sStr = s >= 10 ? `${s}` : `0${s}`;
-  const tStr =
-    v.duration >= 3600 ? `${hStr}:${mStr}:${sStr}` : `${mStr}:${sStr}`;
-  return tStr;
+  return v.duration >= 3600 ? `${hStr}:${mStr}:${sStr}` : `${mStr}:${sStr}`;
 };
 
 export default VideoPlayer;
