@@ -13,17 +13,14 @@ class SpeedControl extends Component {
 
   handleInput = e => {
     this.setState({ value: e.target.value });
-    document.getElementById('loadedVideo').playbackRate &&
-      (document.getElementById(
-        'loadedVideo'
-      ).playbackRate = this.state.value);
+    document.getElementById('loadedVideo').playbackRate = this.state.value;
     document.getElementById(
       'speedometer'
     ).innerHTML = `Speed <span className="leading-zeroes">${leadingZeroes(
       (document.getElementById('loadedVideo').playbackRate * 100).toFixed()
     )}</span>${(document.getElementById('loadedVideo').playbackRate *
       100).toFixed()}%`;
-  }
+  };
 
   render() {
     return (

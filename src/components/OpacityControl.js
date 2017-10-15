@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import { browserIsMS } from '../access';
 import { leadingZeroes } from './MeterReader';
 import './styles/OpacityControl.css';
 import OpacitySlider from './OpacitySlider';
@@ -17,8 +18,14 @@ class OpacityControl extends Component {
   videoOpacityInput = (e) => {
     this.setState({value: e.target.value})
     const layers = document.querySelectorAll('.layer-2');
-    for (let layer of layers) {
-      layer.style.opacity = e.target.value;
+    if (!browserIsMS()) {
+      for (let layer of layers) {
+        layer.style.opacity = e.target.value;
+      }
+    } else {
+      for (let i = 0; i < layers.length; ++i) {
+        layers[i].style.opacity = e.target.value;
+      }
     }
     document.querySelector('.opacitometer-0').innerHTML = `Video
     <span className="leading-zeroes">${leadingZeroes(

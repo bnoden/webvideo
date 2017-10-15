@@ -22,3 +22,11 @@ export const shortFileName = (file, token) => {
   }
   return filename[filename.length - 1];
 };
+
+export const browserIsMS = () =>
+  /MSIE 10/i.test(navigator.userAgent) ||
+  /MSIE 9/i.test(navigator.userAgent) ||
+  /rv:11.0/i.test(navigator.userAgent) ||
+  /Edge\/\d./i.test(navigator.userAgent)
+    ? true
+    : false;
