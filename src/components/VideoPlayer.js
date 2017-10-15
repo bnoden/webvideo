@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import './styles/VideoPlayer.css';
 import { demoVideo, demoToken, shortFileName } from '../access';
 import Video from './Video';
+import playButton from './assets/btn-play.png';
+import pauseButton from './assets/btn-pause.png';
 
 export const demoSrc = 'https://' + demoVideo + demoToken;
 
@@ -32,12 +34,15 @@ class VideoPlayer extends Component {
   };
 
   handleClick = e => {
+    const btnPlayPause = document.querySelector('.btn-playpause');
+
     e.target.paused ? e.target.play() : e.target.pause();
     this.setState({
       mediaState: e.target.paused ? 'Paused' : 'Playing'
     });
-    document.querySelector('.btn-play').innerHTML =
-      this.state.mediaState === 'Playing' ? 'Play' : 'Pause';
+    const ppbtn =
+      this.state.mediaState === 'Playing' ? playButton : pauseButton;
+      btnPlayPause.setAttribute('src', ppbtn);
   };
 
   updateTime = e => {

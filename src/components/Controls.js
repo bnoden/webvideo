@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import './styles/Controls.css';
+import playButton from './assets/btn-play.png';
+import pauseButton from './assets/btn-pause.png';
 
 class Controls extends Component {
   constructor(props) {
@@ -10,14 +12,14 @@ class Controls extends Component {
 
   togglePaused = () => {
     const v = document.getElementById('loadedVideo');
-    const btnPlay = document.querySelector('.btn-play');
+    const btnPlayPause = document.querySelector('.btn-playpause');
 
     if (v.paused) {
       v.play();
-      btnPlay.innerHTML = 'Pause';
+      btnPlayPause.setAttribute('src', pauseButton);
     } else {
       v.pause();
-      btnPlay.innerHTML = 'Play';
+      btnPlayPause.setAttribute('src', playButton);
     }
 
   }
@@ -31,7 +33,7 @@ class Controls extends Component {
     return (
       <div className="Controls">
         <div type="button" className="btn-play" onClick={this.togglePaused}>
-          Play
+          <img className="btn-playpause" src={playButton} alt='Play' />
         </div>
         <div id="progressSlider">
           <input
