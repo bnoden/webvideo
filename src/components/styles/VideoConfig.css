@@ -23,6 +23,9 @@
     width: 600px;
     height: 450px;
   }
+  .Controls {
+    width: 600px;
+  }
   .buffer-layer {
     width: 600px;
     height: 450px;
@@ -49,6 +52,9 @@
   .loaded-video {
     width: 400px;
     height: 300px;
+  }
+  .Controls {
+    width: 400px;
   }
 }
 input[type=range]:focus::-ms-fill-lower {

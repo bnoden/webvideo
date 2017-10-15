@@ -1,5 +1,5 @@
 .Controls {
-  width: 804px;
+  max-width: 806px;
   height: 40px;
   border-style: solid;
   border-color: #365D80;
@@ -13,19 +13,23 @@
   flex-flow: row wrap;
 }
 
+#progressSlider {
+  width: 90%;
+}
+
+.progress-slider {
+  width: 80%;
+  margin: auto;
+}
+
 .btn-play {
-  width: 3em;
+  width: 6%;
   height: 18px;
   padding: 4px;
   margin: 4px;
   background-color: #365D80;
   border-radius: 3px;
   cursor: pointer;
-  font-size: 1em;
+  font-size: 0.8em;
   text-align: center;
-}
-
-#progressSlider {
-  width: 90%;
-  margin: auto;
 }
