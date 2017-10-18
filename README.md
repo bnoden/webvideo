@@ -12,5 +12,8 @@ npm start
 build js bundle:  
 npm run build  
 
+run js bundle locally with firebase:  
+firebase serve
+
 deploy to firebase:  
 firebase deploy  
