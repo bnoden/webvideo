@@ -7,7 +7,7 @@ import LayerStyle from './LayerStyle';
 import OpacitySlider from './OpacitySlider';
 
 const defaultLayerOpacity = 1;
-const defaultColor = '#d68800';
+const defaultColor = '#11C680';
 class LayerControl extends Component {
   layerOpacityInput = e => {
     this.setState({ value: e.target.value });
