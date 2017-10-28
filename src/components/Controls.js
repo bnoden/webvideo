@@ -41,8 +41,6 @@ class Controls extends Component {
             className="progress-slider slider"
             defaultValue="0"
             onInput={this.handleInput}
-            min="0"
-            step="0.2"
           />
         </div>
       </div>

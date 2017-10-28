@@ -66,8 +66,7 @@ class VideoPlayer extends Component {
     });
 
     if (this.state.mediaState === 'Reverse') {
-
-      e.target.currentTime += e.target.playbackRate*0.1;
+      e.target.currentTime += e.target.playbackRate * 0.033;
     }
 
     qs('.progress-slider').max = e.target.duration;
@@ -75,7 +74,6 @@ class VideoPlayer extends Component {
     qs('.now-playing').innerHTML = `<p>[ ${srcDisplay()} ]
     ${this.state.mediaState} ${formatTime(e.target, 'current')} |
     -${formatTime(e.target, 'remaining')}</p>`;
-    console.log('playbackRate', e.target.playbackRate);
   };
 
   render() {
