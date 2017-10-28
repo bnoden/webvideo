@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import './styles/VideoPlayer.css';
-import { demoVideo, demoToken, shortFileName } from '../access';
+import { demoVideo, demoToken, qs, shortFileName } from '../access';
 import Video from './Video';
 import playButton from './assets/btn-play.png';
 import pauseButton from './assets/btn-pause.png';
@@ -9,8 +9,8 @@ import pauseButton from './assets/btn-pause.png';
 export const demoSrc = 'https://' + demoVideo + demoToken;
 
 export const srcDisplay = () => {
-  return document.getElementById('file-select').value
-    ? shortFileName(document.getElementById('file-select').value)
+  return qs('#file-select').value
+    ? shortFileName(qs('#file-select').value)
     : shortFileName(demoSrc, 1);
 };
 
@@ -34,7 +34,7 @@ class VideoPlayer extends Component {
   };
 
   handleClick = e => {
-    const btnPlayPause = document.querySelector('.btn-playpause');
+    const btnPlayPause = qs('.btn-playpause');
 
     e.target.paused ? e.target.play() : e.target.pause();
     this.setState({
@@ -42,7 +42,7 @@ class VideoPlayer extends Component {
     });
     const ppbtn =
       this.state.mediaState === 'Playing' ? playButton : pauseButton;
-      btnPlayPause.setAttribute('src', ppbtn);
+    btnPlayPause.setAttribute('src', ppbtn);
   };
 
   updateTime = e => {
@@ -60,13 +60,22 @@ class VideoPlayer extends Component {
                   ? 'Cannot find media'
                   : e.target.seeking
                     ? 'Seeking'
-                    : e.target.paused ? 'Paused' : 'Playing'
+                    : e.target.paused
+                      ? 'Paused'
+                      : e.target.playbackRate < 0 ? 'Reverse' : 'Playing'
     });
-    document.querySelector('.progress-slider').max = e.target.duration;
-    document.querySelector('.progress-slider').value = e.target.currentTime;
-    document.querySelector('.now-playing').innerHTML = `<p>[ ${srcDisplay()} ]
+
+    if (this.state.mediaState === 'Reverse') {
+
+      e.target.currentTime += e.target.playbackRate*0.1;
+    }
+
+    qs('.progress-slider').max = e.target.duration;
+    qs('.progress-slider').value = e.target.currentTime;
+    qs('.now-playing').innerHTML = `<p>[ ${srcDisplay()} ]
     ${this.state.mediaState} ${formatTime(e.target, 'current')} |
     -${formatTime(e.target, 'remaining')}</p>`;
+    console.log('playbackRate', e.target.playbackRate);
   };
 
   render() {
@@ -95,7 +104,7 @@ class VideoPlayer extends Component {
 }
 
 export const formatTime = (v, str) => {
-  v = document.getElementById('loadedVideo');
+  v = qs('#loadedVideo');
   const cTime = v.currentTime ? v.currentTime : v.duration;
   const rTime = v.currentTime ? v.duration - v.currentTime : v.duration;
   let t;

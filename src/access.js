@@ -1,4 +1,8 @@
 // There's nothing here really worth hiding for now.
+
+export const qs = e => document.querySelector(e);
+export const qsa = e => document.querySelectorAll(e);
+
 export const demoVideo =
   'firebasestorage.googleapis.com/v0/b/bn-wvid.appspot.com/o/bbhd1a.mp4';
 export const demoToken =
@@ -28,3 +32,13 @@ export const browserIsMS = () =>
   /Edge\/\d./i.test(navigator.userAgent)
     ? true
     : false;
+
+export const leadingZeroes = str => {
+  let zeroes = '';
+  if (str.length === 2) {
+    zeroes = '0';
+  } else if (str.length === 1) {
+    zeroes = '00';
+  }
+  return zeroes;
+};

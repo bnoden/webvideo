@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './styles/Skip.css';
+import { qs } from '../access';
 
 export const Skip = () =>
   <div className="Skip control">
@@ -41,11 +42,11 @@ export const Skip = () =>
     </div>
   </div>;
 
-const ffInput = () => document.getElementById('input-skip-ff');
-const rwInput = () => document.getElementById('input-skip-rw');
+const ffInput = () => qs('#input-skip-ff');
+const rwInput = () => qs('#input-skip-rw');
 
 const skip = tVal => {
-  const v = document.getElementById('loadedVideo');
+  const v = qs('#loadedVideo');
   if (v) {
     const cTime = v.currentTime;
     const val = typeof tVal === Number ? tVal : +tVal;

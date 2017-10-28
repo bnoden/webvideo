@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 
 import './styles/Controls.css';
+import { qs } from '../access';
 import playButton from './assets/btn-play.png';
 import pauseButton from './assets/btn-pause.png';
 
 class Controls extends Component {
   constructor(props) {
     super(props);
-    this.state = { mediaState: '' }
+    this.state = { mediaState: '' };
   }
 
   togglePaused = () => {
-    const v = document.getElementById('loadedVideo');
-    const btnPlayPause = document.querySelector('.btn-playpause');
+    const v = qs('#loadedVideo');
+    const btnPlayPause = qs('.btn-playpause');
 
     if (v.paused) {
       v.play();
@@ -21,19 +22,18 @@ class Controls extends Component {
       v.pause();
       btnPlayPause.setAttribute('src', playButton);
     }
+  };
 
-  }
-
-  handleInput = (e) => {
-    const v = document.getElementById('loadedVideo');
+  handleInput = e => {
+    const v = qs('#loadedVideo');
     v.currentTime = e.target.value;
-  }
+  };
 
   render() {
     return (
       <div className="Controls">
         <div type="button" className="btn-play" onClick={this.togglePaused}>
-          <img className="btn-playpause" src={playButton} alt='Play' />
+          <img className="btn-playpause" src={playButton} alt="Play" />
         </div>
         <div id="progressSlider">
           <input
@@ -49,7 +49,5 @@ class Controls extends Component {
     );
   }
 }
-
-
 
 export default Controls;

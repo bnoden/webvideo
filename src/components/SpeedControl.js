@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { leadingZeroes } from './MeterReader';
+import { leadingZeroes, qs } from '../access';
 import './styles/SpeedControl.css';
 
 const defaultSpeed = 1.0;
@@ -13,13 +13,12 @@ class SpeedControl extends Component {
 
   handleInput = e => {
     this.setState({ value: e.target.value });
-    document.getElementById('loadedVideo').playbackRate = this.state.value;
-    document.getElementById(
-      'speedometer'
+    qs('#loadedVideo').playbackRate = this.state.value;
+    qs(
+      '#speedometer'
     ).innerHTML = `Speed <span className="leading-zeroes">${leadingZeroes(
-      (document.getElementById('loadedVideo').playbackRate * 100).toFixed()
-    )}</span>${(document.getElementById('loadedVideo').playbackRate *
-      100).toFixed()}%`;
+      (qs('#loadedVideo').playbackRate * 100).toFixed()
+    )}</span>${(qs('#loadedVideo').playbackRate * 100).toFixed()}%`;
   };
 
   render() {
@@ -31,8 +30,8 @@ class SpeedControl extends Component {
         <input
           className="speed-slider slider"
           type="range"
-          min="0.01"
-          max="4.0"
+          min="-4"
+          max="4"
           step="0.01"
           defaultValue={defaultSpeed}
           onInput={this.handleInput}

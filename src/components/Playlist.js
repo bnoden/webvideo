@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import './styles/Playlist.css';
+import { qs } from '../access';
 
 class Playlist extends Component {
   constructor(props) {
@@ -30,11 +31,11 @@ class Playlist extends Component {
 }
 
 export const localSrc = () => {
-  if (document.getElementById('file-select').files.length) {
+  if (qs('#file-select').files.length) {
     const URL = window.URL || window.webkitURL;
     (() => {
-      const file = document.getElementById('file-select').files[0];
-      const videoNode = document.getElementById('loadedVideo');
+      const file = qs('#file-select').files[0];
+      const videoNode = qs('#loadedVideo');
       const fileURL = URL.createObjectURL(file);
       videoNode.src = fileURL;
     })();

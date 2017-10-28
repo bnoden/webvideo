@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
-import { browserIsMS } from '../access';
-import { leadingZeroes } from './MeterReader';
+import { browserIsMS, leadingZeroes, qs, qsa } from '../access';
 import './styles/OpacityControl.css';
 import OpacitySlider from './OpacitySlider';
 
@@ -12,12 +11,12 @@ class OpacityControl extends Component {
 
     this.state = {
       value: ''
-    }
+    };
   }
 
-  videoOpacityInput = (e) => {
-    this.setState({value: e.target.value})
-    const layers = document.querySelectorAll('.layer-2');
+  videoOpacityInput = e => {
+    this.setState({ value: e.target.value });
+    const layers = qsa('.layer-2');
     if (!browserIsMS()) {
       for (let layer of layers) {
         layer.style.opacity = e.target.value;
@@ -27,12 +26,11 @@ class OpacityControl extends Component {
         layers[i].style.opacity = e.target.value;
       }
     }
-    document.querySelector('.opacitometer-0').innerHTML = `Video
+    qs('.opacitometer-0').innerHTML = `Video
     <span className="leading-zeroes">${leadingZeroes(
-      (document.querySelector('.layer-2').style.opacity * 100).toFixed()
-    )}</span>${(document.querySelector('.layer-2').style.opacity *
-      100).toFixed()}%`;
-  }
+      (qs('.layer-2').style.opacity * 100).toFixed()
+    )}</span>${(qs('.layer-2').style.opacity * 100).toFixed()}%`;
+  };
 
   render() {
     return (
@@ -51,7 +49,7 @@ class OpacityControl extends Component {
           max="1"
           step="0.01"
           onInput={this.videoOpacityInput}
-          />
+        />
       </div>
     );
   }

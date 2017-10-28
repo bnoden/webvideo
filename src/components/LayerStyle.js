@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { qs } from '../access';
+
 class LayerStyle extends Component {
   constructor(props) {
     super(props);
@@ -7,13 +9,10 @@ class LayerStyle extends Component {
     this.state = { value: '' };
   }
 
-  handleInput = (e) => {
-    this.setState({value: e.target.value})
-    const layerOne = '#layerOne';
-    const layerText = '#layerText';
-    const qsLayer = (el) => document.querySelector(el);
-    qsLayer(layerOne).style.backgroundColor = e.target.value;
-    qsLayer(layerText).style.color = e.target.value;
+  handleInput = e => {
+    this.setState({ value: e.target.value });
+    qs('#layerOne').style.backgroundColor = e.target.value;
+    qs('#layerText').style.color = e.target.value;
   };
 
   render() {
