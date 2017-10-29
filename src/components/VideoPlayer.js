@@ -19,7 +19,14 @@ class VideoPlayer extends Component {
     super(props);
 
     this.state = {
-      mediaState: ''
+      mediaState: 'Paused',
+      duration: 0,
+      currentTime: 0,
+      remainder: 0,
+      retrospect: 0,
+      reverse: 0,
+      speed: 1,
+      volume: 1
     };
   }
 
@@ -34,39 +41,57 @@ class VideoPlayer extends Component {
   };
 
   handleClick = e => {
-    const btnPlayPause = qs('.btn-playpause');
+    if (this.state.reverse) {
+      this.setState({
+        mediaState: e.target.paused ? 'Paused' : 'Reverse'
+      });
+    } else {
+      this.setState({
+        mediaState: e.target.paused ? 'Paused' : 'Playing'
+      });
+    }
 
     e.target.paused ? e.target.play() : e.target.pause();
-    this.setState({
-      mediaState: e.target.paused ? 'Paused' : 'Playing'
-    });
-    const ppbtn =
-      this.state.mediaState === 'Playing' ? playButton : pauseButton;
-    btnPlayPause.setAttribute('src', ppbtn);
   };
 
   updateTime = e => {
     this.setState({
-      mediaState:
-        e.target.duration - e.target.currentTime < 0.05
-          ? 'Ended'
-          : e.target.error
-            ? 'ERROR'
-            : e.target.progress
-              ? 'Loading media...'
-              : e.target.waiting
-                ? 'Buffering'
-                : e.target.stalled
-                  ? 'Cannot find media'
-                  : e.target.seeking
-                    ? 'Seeking'
-                    : e.target.paused
-                      ? 'Paused'
-                      : e.target.playbackRate < 0 ? 'Reverse' : 'Playing'
+      duration: e.target.duration,
+      currentTime: e.target.currentTime,
+      remainder: e.target.duration - e.target.currentTime,
+      retrospect:
+        this.state.retrospect + 0.3 >= this.state.currentTime
+          ? this.state.retrospect
+          : this.state.currentTime,
+      speed: e.target.playbackRate,
+      reverse: this.state.speed < 0 ? 1 : 0,
+      volume: qs('.volume-slider').value,
+      mediaState: !this.state.remainder
+        ? 'Stopped'
+        : e.target.error
+          ? 'ERROR'
+          : e.target.progress
+            ? 'Loading media...'
+            : e.target.waiting
+              ? 'Buffering'
+              : e.target.stalled
+                ? 'Cannot find media'
+                : e.target.paused
+                  ? 'Paused'
+                  : this.state.speed < 0 ? 'Reverse' : 'Playing'
     });
 
     if (this.state.mediaState === 'Reverse') {
       e.target.currentTime += e.target.playbackRate * 0.033;
+      if (e.target.currentTime <= 0.3) {
+        e.target.currentTime = this.state.remainder;
+        e.target.pause();
+        this.setState({ mediaState: 'Stopped' });
+      }
+    }
+
+    if (this.state.mediaState === 'Stopped') {
+      e.target.currentTime = this.state.reverse ? e.target.duration - 0.3 : 0;
     }
 
     qs('.progress-slider').max = e.target.duration;
@@ -74,6 +99,12 @@ class VideoPlayer extends Component {
     qs('.now-playing').innerHTML = `<p>[ ${srcDisplay()} ]
     ${this.state.mediaState} ${formatTime(e.target, 'current')} |
     -${formatTime(e.target, 'remaining')}</p>`;
+    const btnPlayPause = qs('.btn-playpause');
+    const ppbtn =
+      this.state.mediaState === 'Playing' || this.state.mediaState === 'Reverse'
+        ? pauseButton
+        : playButton;
+    btnPlayPause.setAttribute('src', ppbtn);
   };
 
   render() {
@@ -83,6 +114,7 @@ class VideoPlayer extends Component {
           <div className="layer layer-0" />
           <Video
             src={demoSrc}
+            volume={this.props.volume}
             mediaState={this.updateTime}
             id="loadedVideo"
             onPause={this.updateTime}

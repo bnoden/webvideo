@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Playlist from './components/Playlist';
-import { VideoDisplay } from './components/VideoDisplay';
+import { VideoUI } from './components/VideoUI';
 import Controls from './components/Controls';
 
 import './App.css';
@@ -15,7 +15,7 @@ class App extends Component {
           <Playlist />
         </div>
         <div>
-          <VideoDisplay />
+          <VideoUI />
         </div>
         <Controls />
       </div>

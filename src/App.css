@@ -1,4 +1,3 @@
-
 .App {
   text-align: left;
   display: block;
@@ -17,14 +16,17 @@
 .now-playing {
   width: 804px;
 }
-.now-playing, .Playlist {
+
+.now-playing,
+.Playlist {
   border-style: solid;
-  border-color: #365D80;
+  border-color: #365d80;
   border-width: 2px;
   border-radius: 4px;
-  background-color: #020A0F;
-  color: #ebf2f7;
+  background-color: #020a0f;
+  color: #C1F7CF;
   text-align: center;
+  letter-spacing: 1.5px;
   height: 100%;
   margin: justify;
 }
@@ -38,7 +40,6 @@
 
 #now-playing {
   text-align: center;
-
 }
 
 .Playlist {

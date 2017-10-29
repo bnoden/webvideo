@@ -2,46 +2,68 @@ import React, { Component } from 'react';
 
 import { leadingZeroes, qs } from '../access';
 
-const defaultVolume = 1;
 class VolumeControl extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      value: defaultVolume,
-      muted: 0,
-      beforeMuted: defaultVolume
+      defaultVolume: 1,
+      volume: 1,
+      muted: false,
+      beforeMuted: 1
     };
   }
 
-  handleInput = e => {
-    this.setState({ value: e.target.value });
-    qs('#loadedVideo').volume = this.state.value;
-    qs(
-      '#volumeter'
-    ).innerHTML = `Volume <span className="leading-zeroes">${leadingZeroes(
-      (qs('#loadedVideo').volume * 100).toFixed()
-    )}</span>${(qs('#loadedVideo').volume * 100).toFixed()}%`;
+  handleSliderInput = e => {
+    qs('#btn-mute').checked = false;
+    this.setState({
+      volume: e.target.value,
+      muted: false
+    });
+    qs('#loadedVideo').volume = e.target.value;
+    this.showVolume();
+  };
+
+  handleSliderClick = e => {
     if (qs('#btn-mute').checked) {
       qs('#btn-mute').checked = false;
-      this.toggleMute();
+      this.setState({ muted: false });
     }
+    this.setState({ volume: e.target.value });
+    qs('#loadedVideo').volume = this.state.volume;
+    this.showVolume();
   };
 
   toggleMute = () => {
     if (qs('#btn-mute').checked) {
-      this.setState({ beforeMuted: qs('.volume-slider').value });
-      this.setState({ muted: 1 });
+      this.setState({ beforeMuted: this.state.volume });
+      this.volumeOff();
     } else {
-      this.setState({ muted: 0 });
+      this.volumeOn();
     }
-    qs('.volume-slider').value = !this.state.muted ? 0 : this.state.beforeMuted;
-    qs('#loadedVideo').volume = !this.state.muted ? 0 : this.state.beforeMuted;
-    qs('#volumeter').innerHTML = !this.state.muted
-      ? 'Volume Mute'
-      : `Volume <span className="leading-zeroes">${leadingZeroes(
-          (qs('#loadedVideo').volume * 100).toFixed()
-        )}</span>${(qs('#loadedVideo').volume * 100).toFixed()}%`;
+    this.showVolume();
+    this.setState({ volume: qs('#loadedVideo').volume });
+  };
+
+  volumeOff = () => {
+    this.setState({ volume: 0, muted: true });
+    qs('.volume-slider').value = 0;
+    qs('#loadedVideo').volume = 0;
+    qs('#volumeter').innerHTML = 'Volume Muted';
+  };
+
+  volumeOn = () => {
+    this.setState({ volume: this.state.beforeMuted, muted: false });
+    qs('.volume-slider').value = this.state.beforeMuted;
+    qs('#loadedVideo').volume = this.state.beforeMuted;
+  };
+
+  showVolume = () => {
+    qs(
+      '#volumeter'
+    ).innerHTML = `Volume <span className="leading-zeroes">${leadingZeroes(
+      Math.floor(qs('#loadedVideo').volume * 100)
+    )}</span>${Math.floor(qs('#loadedVideo').volume * 100)}%`;
   };
 
   render() {
@@ -58,12 +80,11 @@ class VolumeControl extends Component {
           <input
             className="volume-slider slider"
             type="range"
-            min="0"
-            max="1"
             step="0.01"
-            defaultValue={defaultVolume}
-            onInput={this.handleInput}
-            onClick={this.handleInput}
+            max="1"
+            defaultValue={this.state.defaultVolume}
+            onInput={this.handleSliderInput}
+            onClick={this.handleSliderClick}
           />
         </div>
         <div className="mute-box">

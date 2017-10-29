@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { browserIsMS, leadingZeroes, qs, qsa } from '../access';
+import { browserIs, leadingZeroes, qs, qsa } from '../access';
 import './styles/OpacityControl.css';
 import OpacitySlider from './OpacitySlider';
 
@@ -17,7 +17,7 @@ class OpacityControl extends Component {
   videoOpacityInput = e => {
     this.setState({ value: e.target.value });
     const layers = qsa('.layer-2');
-    if (!browserIsMS()) {
+    if (!browserIs.MS()) {
       for (let layer of layers) {
         layer.style.opacity = e.target.value;
       }

@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 
-import { leadingZeroes, qs } from '../access';
+import { browserIs, leadingZeroes, qs } from '../access';
 import './styles/SpeedControl.css';
 
 const defaultSpeed = 1.0;
+
+const minSpeed = !browserIs.Chrome() ? 0.25 : -4;
+
 class SpeedControl extends Component {
   constructor(props) {
     super(props);
@@ -30,11 +33,12 @@ class SpeedControl extends Component {
         <input
           className="speed-slider slider"
           type="range"
-          min="-4"
-          max="4"
+          min={minSpeed}
+          max="5"
           step="0.01"
           defaultValue={defaultSpeed}
           onInput={this.handleInput}
+          onClick={this.handleInput}
         />
       </div>
     );

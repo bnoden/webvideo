@@ -16,6 +16,7 @@ class Video extends Component {
       <div>
         <video
           src={this.props.src}
+          volume={this.props.volume}
           onPause={this.props.onPause}
           onClick={this.props.onClick}
           onDoubleClick={this.props.onDoubleClick}
@@ -25,6 +26,7 @@ class Video extends Component {
           onInput={this.props.onInput}
           onTimeUpdate={this.props.onTimeUpdate}
           onChange={this.props.onChange}
+          alt=""
           preload="auto"
         />
       </div>
