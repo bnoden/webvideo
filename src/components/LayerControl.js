@@ -2,14 +2,32 @@ import React, { Component } from 'react';
 
 import { browserIs, leadingZeroes, qs, qsa } from '../access';
 import './styles/OpacityControl.css';
-import LayerStyle from './LayerStyle';
+import LayerColor from './LayerColor';
 import OpacitySlider from './OpacitySlider';
 
 const defaultLayerOpacity = 1;
-const defaultColor = '#10C880';
+
 class LayerControl extends Component {
-  layerOpacityInput = e => {
-    this.setState({ value: e.target.value });
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      color: '#10C880',
+      opacity: 1
+    }
+  }
+
+  setLayerColor = e => {
+    this.setState({ color: e.target.value });
+    qs('#layerOne').style.backgroundColor = e.target.value;
+    qs('#layerText').style.color = e.target.value;
+    console.log(`state.color: ${this.state.color}`)
+    console.log(typeof this.state.color)
+    // console.log(Math.floor(0xFFFFFF/2).toString(16))
+  };
+
+  setLayerOpacity = e => {
+    this.setState({ opacity: e.target.value });
     const layers = qsa('.layer-1');
     if (!browserIs.MS()) {
       for (let layer of layers) {
@@ -31,13 +49,18 @@ class LayerControl extends Component {
       <div className="opacity-control-1 opacity-control control">
         <div className="dual-label">
           <label htmlFor="colorWell" className="opacitometer meter">
-            <LayerStyle id="colorWell" defaultValue={defaultColor} />
+            <LayerColor
+              className="color-well"
+              id="colorWell"
+              defaultValue={this.state.color}
+              onInput={this.setLayerColor}
+              />
           </label>
           <label
             htmlFor="opacitySlider1"
             id="layerText"
             className="opacitometer-1 opacitometer meter"
-            style={{ color: defaultColor }}
+            style={{ color: this.state.color }}
           >
             {(defaultLayerOpacity * 100).toFixed()}%
           </label>
@@ -48,7 +71,7 @@ class LayerControl extends Component {
           min="0"
           max="1"
           step="0.01"
-          onInput={this.layerOpacityInput}
+          onInput={this.setLayerOpacity}
         />
       </div>
     );

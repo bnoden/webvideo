@@ -19,9 +19,19 @@
   padding: 0px 2px 0px 2px;
   margin: 0px 6px 0px 6px;
 }
+
 span {
   opacity: 0;
 }
+
+
+
+.video-config {
+  resize: both;
+  overflow: hidden;
+}
+
+
 
 @media all and (min-width: 480px) {
   .video-config {

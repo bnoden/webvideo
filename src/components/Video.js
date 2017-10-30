@@ -26,8 +26,9 @@ class Video extends Component {
           onInput={this.props.onInput}
           onTimeUpdate={this.props.onTimeUpdate}
           onChange={this.props.onChange}
+          loop={this.props.loop}
+          preload={this.props.preload}
           alt=""
-          preload="auto"
         />
       </div>
     );

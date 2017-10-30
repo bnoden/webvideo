@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './styles/VideoPlayer.css';
 import { demoVideo, demoToken, qs, shortFileName } from '../access';
 import Video from './Video';
+import FormatTime from './FormatTime';
 import playButton from './assets/btn-play.png';
 import pauseButton from './assets/btn-pause.png';
 
@@ -26,7 +27,8 @@ class VideoPlayer extends Component {
       retrospect: 0,
       reverse: 0,
       speed: 1,
-      volume: 1
+      volume: 1,
+      loop: true
     };
   }
 
@@ -67,7 +69,7 @@ class VideoPlayer extends Component {
       reverse: this.state.speed < 0 ? 1 : 0,
       volume: qs('.volume-slider').value,
       mediaState: !this.state.remainder
-        ? 'Stopped'
+        ? 'Ended'
         : e.target.error
           ? 'ERROR'
           : e.target.progress
@@ -85,20 +87,23 @@ class VideoPlayer extends Component {
       e.target.currentTime += e.target.playbackRate * 0.033;
       if (e.target.currentTime <= 0.3) {
         e.target.currentTime = this.state.remainder;
-        e.target.pause();
-        this.setState({ mediaState: 'Stopped' });
+        if (!this.state.loop) {
+          e.target.pause();
+          this.setState({ mediaState: 'Ended' });
+          e.target.currentTime = e.target.duration - 0.3;
+        }
       }
     }
 
-    if (this.state.mediaState === 'Stopped') {
+    if (this.state.mediaState === 'Ended') {
       e.target.currentTime = this.state.reverse ? e.target.duration - 0.3 : 0;
     }
 
     qs('.progress-slider').max = e.target.duration;
     qs('.progress-slider').value = e.target.currentTime;
     qs('.now-playing').innerHTML = `<p>[ ${srcDisplay()} ]
-    ${this.state.mediaState} ${formatTime(e.target, 'current')} |
-    -${formatTime(e.target, 'remaining')}</p>`;
+    ${this.state.mediaState} ${FormatTime(e.target, 'current')} |
+    -${FormatTime(e.target, 'remaining')}</p>`;
     const btnPlayPause = qs('.btn-playpause');
     const ppbtn =
       this.state.mediaState === 'Playing' || this.state.mediaState === 'Reverse'
@@ -125,6 +130,8 @@ class VideoPlayer extends Component {
             onInput={this.updateTime}
             onTimeUpdate={this.updateTime}
             onChange={this.updateTime}
+            loop={this.state.loop}
+            preload="auto"
           />
           <div id="layerOne" className="layer layer-1 layer-color" />
         </div>
@@ -132,26 +139,5 @@ class VideoPlayer extends Component {
     );
   }
 }
-
-export const formatTime = (v, str) => {
-  v = qs('#loadedVideo');
-  const cTime = v.currentTime ? v.currentTime : v.duration;
-  const rTime = v.currentTime ? v.duration - v.currentTime : v.duration;
-  let t;
-
-  // Might add more conditions later
-  if (str === 'remaining') {
-    t = rTime;
-  } else if (str === 'current') {
-    t = cTime;
-  }
-  const s = t >= 60 ? Math.floor(t % 60) : Math.floor(t);
-  const m = t >= 60 ? Math.floor(t / 60) : 0;
-  const h = t >= 3600 ? Math.floor(t / 3600) : 0;
-  const hStr = v.duration >= 3600 && `${h}`;
-  const mStr = m <= 10 && v.duration >= 3600 ? `0${m}` : `${m}`;
-  const sStr = s >= 10 ? `${s}` : `0${s}`;
-  return v.duration >= 3600 ? `${hStr}:${mStr}:${sStr}` : `${mStr}:${sStr}`;
-};
 
 export default VideoPlayer;

@@ -2,10 +2,6 @@
   padding: 4px;
   margin: 4px;
 }
-.VideoPlayer {
-  width: 800px;
-  height: 600px;
-}
 .buffer-layer {
   width: 800px;
   height: 600px;
@@ -28,8 +24,6 @@
   position: fixed;
   width: 100%;
   height: 100%;
-  /*height: 74.5%;
-  transform: translateY(17%);*/
 }
 .layer-0 {
   z-index: 0;
