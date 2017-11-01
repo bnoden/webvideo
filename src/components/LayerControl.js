@@ -14,16 +14,13 @@ class LayerControl extends Component {
     this.state = {
       color: '#10C880',
       opacity: 1
-    }
+    };
   }
 
   setLayerColor = e => {
     this.setState({ color: e.target.value });
     qs('#layerOne').style.backgroundColor = e.target.value;
     qs('#layerText').style.color = e.target.value;
-    console.log(`state.color: ${this.state.color}`)
-    console.log(typeof this.state.color)
-    // console.log(Math.floor(0xFFFFFF/2).toString(16))
   };
 
   setLayerOpacity = e => {
@@ -54,7 +51,7 @@ class LayerControl extends Component {
               id="colorWell"
               defaultValue={this.state.color}
               onInput={this.setLayerColor}
-              />
+            />
           </label>
           <label
             htmlFor="opacitySlider1"
