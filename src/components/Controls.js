@@ -12,7 +12,7 @@ class Controls extends Component {
   }
 
   togglePaused = () => {
-    const v = qs('#loadedVideo');
+    const v = qs('#loadedMedia');
     const btnPlayPause = qs('.btn-playpause');
 
     if (v.paused) {
@@ -25,7 +25,7 @@ class Controls extends Component {
   };
 
   handleInput = e => {
-    const v = qs('#loadedVideo');
+    const v = qs('#loadedMedia');
     v.currentTime = e.target.value;
   };
 

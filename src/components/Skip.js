@@ -45,16 +45,25 @@ export const Skip = () =>
 const ffInput = () => qs('#input-skip-ff');
 const rwInput = () => qs('#input-skip-rw');
 
-const skip = tVal => {
-  const v = qs('#loadedVideo');
-  if (v) {
-    const cTime = v.currentTime;
-    const val = typeof tVal === Number ? tVal : +tVal;
-    const result = cTime + val;
-    let minmax = 0 < cTime + val ? v.duration : 0;
+const skip = timeToSkip => {
+  const media = qs('#loadedMedia');
+  let destination;
+  if (media) {
+    const _currentTime = media.currentTime;
+    const val = typeof timeToSkip === Number ? timeToSkip : +timeToSkip;
+    const result = _currentTime + val;
 
-    v.currentTime = minmax
-      ? minmax > result ? result : minmax
-      : result > minmax ? result : minmax;
+    let minmax = 0 < _currentTime + val ? media.duration : 0;
+
+    if (qs('#btn-loop').checked) {
+      destination = minmax
+        ? minmax > result ? result : result - minmax
+        : result > minmax ? result : result + media.duration;
+    } else {
+      destination = minmax
+        ? minmax > result ? result : minmax
+        : result > minmax ? result : minmax;
+    }
   }
+  media.currentTime = destination;
 };

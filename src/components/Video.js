@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './styles/VideoPlayer.css';
+import './styles/MediaPlayer.css';
 
 class Video extends Component {
   constructor(props) {
@@ -10,7 +10,6 @@ class Video extends Component {
       mediaState: ''
     };
   }
-
   render() {
     return (
       <div>

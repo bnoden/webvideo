@@ -4,7 +4,7 @@ import { browserIs, leadingZeroes, qs, qsa } from '../access';
 import './styles/OpacityControl.css';
 import OpacitySlider from './OpacitySlider';
 
-const defaultVideoOpacity = 0.5;
+const defaultOpacity = 0.5;
 class OpacityControl extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +14,7 @@ class OpacityControl extends Component {
     };
   }
 
-  videoOpacityInput = e => {
+  opacityInput = e => {
     this.setState({ value: e.target.value });
     const layers = qsa('.layer-2');
     if (!browserIs.MS()) {
@@ -40,15 +40,15 @@ class OpacityControl extends Component {
           id="opacitometer0"
           className="opacitometer-0 opacitometer meter"
         >
-          Video {(defaultVideoOpacity * 100).toFixed()}%
+          Video {(defaultOpacity * 100).toFixed()}%
         </label>
         <OpacitySlider
           className="opacity-slider-0"
-          defaultValue={defaultVideoOpacity}
+          defaultValue={defaultOpacity}
           min="0"
           max="1"
           step="0.01"
-          onInput={this.videoOpacityInput}
+          onInput={this.opacityInput}
         />
       </div>
     );

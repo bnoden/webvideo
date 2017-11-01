@@ -18,7 +18,7 @@
 }
 
 .now-playing,
-.Playlist {
+.FileLoader {
   border-style: solid;
   border-color: #365d80;
   border-width: 2px;
@@ -29,7 +29,7 @@
   letter-spacing: 1.5px;
   height: 100%;
   margin: justify;
-  
+
 }
 
 .App-header p {
@@ -43,7 +43,7 @@
   text-align: center;
 }
 
-.Playlist {
+.FileLoader {
   text-align: center;
   margin-left: 12px;
   max-width: 30%;

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import { browserIs, leadingZeroes, qs } from '../access';
-import './styles/SpeedControl.css';
 
 const defaultSpeed = 1.0;
 
@@ -16,12 +15,12 @@ class SpeedControl extends Component {
 
   handleInput = e => {
     this.setState({ value: e.target.value });
-    qs('#loadedVideo').playbackRate = this.state.value;
+    qs('#loadedMedia').playbackRate = this.state.value;
     qs(
       '#speedometer'
     ).innerHTML = `Speed <span className="leading-zeroes">${leadingZeroes(
-      (qs('#loadedVideo').playbackRate * 100).toFixed()
-    )}</span>${(qs('#loadedVideo').playbackRate * 100).toFixed()}%`;
+      (qs('#loadedMedia').playbackRate * 100).toFixed()
+    )}</span>${(qs('#loadedMedia').playbackRate * 100).toFixed()}%`;
   };
 
   render() {

@@ -20,7 +20,7 @@ class VolumeControl extends Component {
       volume: e.target.value,
       muted: false
     });
-    qs('#loadedVideo').volume = e.target.value;
+    qs('#loadedMedia').volume = e.target.value;
     this.showVolume();
   };
 
@@ -30,7 +30,7 @@ class VolumeControl extends Component {
       this.setState({ muted: false });
     }
     this.setState({ volume: e.target.value });
-    qs('#loadedVideo').volume = this.state.volume;
+    qs('#loadedMedia').volume = this.state.volume;
     this.showVolume();
   };
 
@@ -42,28 +42,28 @@ class VolumeControl extends Component {
       this.volumeOn();
     }
     this.showVolume();
-    this.setState({ volume: qs('#loadedVideo').volume });
+    this.setState({ volume: qs('#loadedMedia').volume });
   };
 
   volumeOff = () => {
     this.setState({ volume: 0, muted: true });
     qs('.volume-slider').value = 0;
-    qs('#loadedVideo').volume = 0;
+    qs('#loadedMedia').volume = 0;
     qs('#volumeter').innerHTML = 'Volume Muted';
   };
 
   volumeOn = () => {
     this.setState({ volume: this.state.beforeMuted, muted: false });
     qs('.volume-slider').value = this.state.beforeMuted;
-    qs('#loadedVideo').volume = this.state.beforeMuted;
+    qs('#loadedMedia').volume = this.state.beforeMuted;
   };
 
   showVolume = () => {
     qs(
       '#volumeter'
     ).innerHTML = `Volume <span className="leading-zeroes">${leadingZeroes(
-      Math.floor(qs('#loadedVideo').volume * 100)
-    )}</span>${Math.floor(qs('#loadedVideo').volume * 100)}%`;
+      Math.floor(qs('#loadedMedia').volume * 100)
+    )}</span>${Math.floor(qs('#loadedMedia').volume * 100)}%`;
   };
 
   render() {
@@ -87,9 +87,16 @@ class VolumeControl extends Component {
             onClick={this.handleSliderClick}
           />
         </div>
-        <div className="mute-box">
-          <input type="checkbox" id="btn-mute" onChange={this.toggleMute} />
-          <label htmlFor="btn-mute">Mute</label>
+        <div className="checkboxes">
+          <div className="mute-box box">
+            <input type="checkbox" id="btn-mute" onChange={this.toggleMute} />
+            <label htmlFor="btn-mute">Mute</label>
+          </div>
+          {/* Code for loop checkbox should be placed elsewhere at some point. */}
+          <div className="loop-box box">
+            <input type="checkbox" id="btn-loop" />
+            <label htmlFor="btn-loop">Loop</label>
+          </div>
         </div>
       </div>
     );

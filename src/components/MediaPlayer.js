@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './styles/VideoPlayer.css';
+import './styles/MediaPlayer.css';
 import { demoVideo, demoToken, qs, shortFileName } from '../access';
 import Video from './Video';
 import FormatTime from './FormatTime';
@@ -15,7 +15,7 @@ export const srcDisplay = () => {
     : shortFileName(demoSrc, 1);
 };
 
-class VideoPlayer extends Component {
+class MediaPlayer extends Component {
   constructor(props) {
     super(props);
 
@@ -28,7 +28,7 @@ class VideoPlayer extends Component {
       reverse: 0,
       speed: 1,
       volume: 1,
-      loop: true
+      loop: false
     };
   }
 
@@ -56,6 +56,10 @@ class VideoPlayer extends Component {
     e.target.paused ? e.target.play() : e.target.pause();
   };
 
+  togglePlaybackLoop = () => {
+    return qs('#btn-loop').checked ? true : false;
+  };
+
   updateTime = e => {
     this.setState({
       duration: e.target.duration,
@@ -68,6 +72,7 @@ class VideoPlayer extends Component {
       speed: e.target.playbackRate,
       reverse: this.state.speed < 0 ? 1 : 0,
       volume: qs('.volume-slider').value,
+      loop: this.togglePlaybackLoop(),
       mediaState: !this.state.remainder
         ? 'Ended'
         : e.target.error
@@ -82,6 +87,13 @@ class VideoPlayer extends Component {
                   ? 'Paused'
                   : this.state.speed < 0 ? 'Reverse' : 'Playing'
     });
+
+    const btnPlayPause = qs('.btn-playpause');
+    const ppbtn =
+      this.state.mediaState === 'Playing' || this.state.mediaState === 'Reverse'
+        ? pauseButton
+        : playButton;
+    btnPlayPause.setAttribute('src', ppbtn);
 
     if (this.state.mediaState === 'Reverse') {
       e.target.currentTime += e.target.playbackRate * 0.033;
@@ -104,28 +116,22 @@ class VideoPlayer extends Component {
     qs('.now-playing').innerHTML = `<p>[ ${srcDisplay()} ]
     ${this.state.mediaState} ${FormatTime(e.target, 'current')} |
     -${FormatTime(e.target, 'remaining')}</p>`;
-    const btnPlayPause = qs('.btn-playpause');
-    const ppbtn =
-      this.state.mediaState === 'Playing' || this.state.mediaState === 'Reverse'
-        ? pauseButton
-        : playButton;
-    btnPlayPause.setAttribute('src', ppbtn);
   };
 
   render() {
     return (
-      <div className="VideoPlayer">
+      <div className="MediaPlayer">
         <div className="buffer-layer">
           <div className="layer layer-0" />
           <Video
             src={demoSrc}
             volume={this.props.volume}
             mediaState={this.updateTime}
-            id="loadedVideo"
+            id="loadedMedia"
             onPause={this.updateTime}
             onClick={this.handleClick}
             onDoubleClick={this.dblClick}
-            className="Video loaded-video layer-2"
+            className="Video loaded-media layer-2"
             onLoadedMetadata={this.updateTime}
             onInput={this.updateTime}
             onTimeUpdate={this.updateTime}
@@ -140,4 +146,4 @@ class VideoPlayer extends Component {
   }
 }
 
-export default VideoPlayer;
+export default MediaPlayer;

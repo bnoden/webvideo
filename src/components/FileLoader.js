@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
 
-import './styles/Playlist.css';
+import './styles/FileLoader.css';
 import { qs } from '../access';
 
-class Playlist extends Component {
+class FileLoader extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentVideo: 0
+      file: 0
     };
   }
 
   render() {
     return (
-      <div className="Playlist">
+      <div className="FileLoader">
         <div id="drop_zone">
           <input
             id="file-select"
             type="file"
-            accept="video/*"
+            accept="any"
             onChange={() => {
               localSrc();
             }}
@@ -35,11 +35,11 @@ export const localSrc = () => {
     const URL = window.URL || window.webkitURL;
     (() => {
       const file = qs('#file-select').files[0];
-      const videoNode = qs('#loadedVideo');
+      const mediaNode = qs('#loadedMedia');
       const fileURL = URL.createObjectURL(file);
-      videoNode.src = fileURL;
+      mediaNode.src = fileURL;
     })();
   }
 };
 
-export default Playlist;
+export default FileLoader;
