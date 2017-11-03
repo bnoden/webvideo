@@ -4,7 +4,8 @@ import { browserIs, leadingZeroes, qs } from '../access';
 
 const defaultSpeed = 1.0;
 
-const minSpeed = !browserIs.Chrome() ? 0.25 : -4;
+const minSpeed = !browserIs.Chrome() ? 0.25 : 0;
+const maxSpeed = !browserIs.Chrome() ? 5 : 8;
 
 class SpeedControl extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class SpeedControl extends Component {
           className="speed-slider slider"
           type="range"
           min={minSpeed}
-          max="5"
+          max={maxSpeed}
           step="0.01"
           defaultValue={defaultSpeed}
           onInput={this.handleInput}

@@ -20,15 +20,17 @@ class MediaPlayer extends Component {
     super(props);
 
     this.state = {
+      src: this.props.src,
       mediaState: 'Paused',
+      playing: 0,
       duration: 0,
       currentTime: 0,
       remainder: 0,
       retrospect: 0,
       reverse: 0,
+      loop: 0,
       speed: 1,
-      volume: 1,
-      loop: false
+      volume: 1
     };
   }
 
@@ -43,21 +45,31 @@ class MediaPlayer extends Component {
   };
 
   handleClick = e => {
-    if (this.state.reverse) {
-      this.setState({
-        mediaState: e.target.paused ? 'Paused' : 'Reverse'
-      });
-    } else {
-      this.setState({
-        mediaState: e.target.paused ? 'Paused' : 'Playing'
-      });
+    if (this.state.reverse && !this.state.playing) {
+      e.target.currentTime -= e.target.playbackRate * 0.025;
+      if (e.target.currentTime <= 0.3) {
+        e.target.currentTime = this.state.remainder;
+        if (!this.state.loop) {
+          e.target.pause();
+          this.setState({ mediaState: 'Ended' });
+          e.target.currentTime = e.target.duration - 0.3;
+        }
+      }
     }
+
+    this.setState({
+      mediaState: e.target.paused ? 'Paused' : 'Playing'
+    });
 
     e.target.paused ? e.target.play() : e.target.pause();
   };
 
-  togglePlaybackLoop = () => {
-    return qs('#btn-loop').checked ? true : false;
+  isReversed = () => {
+    return qs('#btn-reverse').checked ? 1 : 0;
+  };
+
+  isLooped = () => {
+    return qs('#btn-loop').checked ? 1 : 0;
   };
 
   updateTime = e => {
@@ -70,9 +82,9 @@ class MediaPlayer extends Component {
           ? this.state.retrospect
           : this.state.currentTime,
       speed: e.target.playbackRate,
-      reverse: this.state.speed < 0 ? 1 : 0,
+      reverse: this.isReversed(),
       volume: qs('.volume-slider').value,
-      loop: this.togglePlaybackLoop(),
+      loop: this.isLooped(),
       mediaState: !this.state.remainder
         ? 'Ended'
         : e.target.error
@@ -83,20 +95,16 @@ class MediaPlayer extends Component {
               ? 'Buffering'
               : e.target.stalled
                 ? 'Cannot find media'
-                : e.target.paused
-                  ? 'Paused'
-                  : this.state.speed < 0 ? 'Reverse' : 'Playing'
+                : e.target.paused ? 'Paused' : 'Playing',
+      playing: this.state.mediaState === 'Playing' ? 1 : 0
     });
 
     const btnPlayPause = qs('.btn-playpause');
-    const ppbtn =
-      this.state.mediaState === 'Playing' || this.state.mediaState === 'Reverse'
-        ? pauseButton
-        : playButton;
+    const ppbtn = this.state.playing ? pauseButton : playButton;
     btnPlayPause.setAttribute('src', ppbtn);
 
-    if (this.state.mediaState === 'Reverse') {
-      e.target.currentTime += e.target.playbackRate * 0.033;
+    if (this.state.reverse && this.state.playing) {
+      e.target.currentTime += e.target.playbackRate * -0.025;
       if (e.target.currentTime <= 0.3) {
         e.target.currentTime = this.state.remainder;
         if (!this.state.loop) {
@@ -113,9 +121,10 @@ class MediaPlayer extends Component {
 
     qs('.progress-slider').max = e.target.duration;
     qs('.progress-slider').value = e.target.currentTime;
+
     qs('.now-playing').innerHTML = `<p>[ ${srcDisplay()} ]
-    ${this.state.mediaState} ${FormatTime(e.target, 'current')} |
-    -${FormatTime(e.target, 'remaining')}</p>`;
+      ${this.state.mediaState} ${FormatTime(e.target, 'current')} |
+      -${FormatTime(e.target, 'remaining')}</p>`;
   };
 
   render() {
@@ -136,9 +145,10 @@ class MediaPlayer extends Component {
             onInput={this.updateTime}
             onTimeUpdate={this.updateTime}
             onChange={this.updateTime}
-            loop={this.state.loop}
+            loop={this.state.loop ? true : false}
             preload="auto"
           />
+          <div className="layer overlay" />
           <div id="layerOne" className="layer layer-1 layer-color" />
         </div>
       </div>

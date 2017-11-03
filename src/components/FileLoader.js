@@ -19,7 +19,7 @@ class FileLoader extends Component {
           <input
             id="file-select"
             type="file"
-            accept="any"
+            accept="video/*"
             onChange={() => {
               localSrc();
             }}
@@ -34,10 +34,12 @@ export const localSrc = () => {
   if (qs('#file-select').files.length) {
     const URL = window.URL || window.webkitURL;
     (() => {
-      const file = qs('#file-select').files[0];
+      const file = qs('input[type=file]').files[0];
       const mediaNode = qs('#loadedMedia');
       const fileURL = URL.createObjectURL(file);
       mediaNode.src = fileURL;
+
+      console.log('*-*-* FILE: ' + typeof fileURL + ' ' + fileURL);
     })();
   }
 };

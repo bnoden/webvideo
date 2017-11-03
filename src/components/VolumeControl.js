@@ -92,10 +92,14 @@ class VolumeControl extends Component {
             <input type="checkbox" id="btn-mute" onChange={this.toggleMute} />
             <label htmlFor="btn-mute">Mute</label>
           </div>
-          {/* Code for loop checkbox should be placed elsewhere at some point. */}
+          {/* Code for loop/reverse checkboxes should be placed elsewhere at some point. */}
           <div className="loop-box box">
             <input type="checkbox" id="btn-loop" />
             <label htmlFor="btn-loop">Loop</label>
+          </div>
+          <div className="reverse-box box">
+            <input type="checkbox" id="btn-reverse" />
+            <label htmlFor="btn-reverse">Reverse</label>
           </div>
         </div>
       </div>

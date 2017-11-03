@@ -1,5 +1,3 @@
-// There's nothing here really worth hiding for now.
-
 export const qs = e => document.querySelector(e);
 export const qsa = e => document.querySelectorAll(e);
 
