@@ -129,7 +129,7 @@ class MediaPlayer extends Component {
 
   render() {
     return (
-      <div className="MediaPlayer">
+      <div className="MediaPlayer" style={{transform: `scale(${this.state.xAxis}, 1)`}} >
         <div className="buffer-layer">
           <div className="layer layer-0" />
           <Video

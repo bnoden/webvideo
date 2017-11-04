@@ -66,6 +66,11 @@ class VolumeControl extends Component {
     )}</span>${Math.floor(qs('#loadedMedia').volume * 100)}%`;
   };
 
+  toggleMirror = () => {
+    const x = qs('#btn-mirror').checked ? -1 : 1;
+    qs('#loadedMedia').style.transform = `scale(${x}, 1)`;
+  };
+
   render() {
     return (
       <div>
@@ -100,6 +105,10 @@ class VolumeControl extends Component {
           <div className="reverse-box box">
             <input type="checkbox" id="btn-reverse" />
             <label htmlFor="btn-reverse">Reverse</label>
+          </div>
+          <div className="mirror-box box">
+            <input type="checkbox" id="btn-mirror" onChange={this.toggleMirror} />
+            <label htmlFor="btn-mirror">Mirror</label>
           </div>
         </div>
       </div>
