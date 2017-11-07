@@ -3,7 +3,7 @@
   min-width: 10%;
   max-width: 20%;
   min-height: 40px;
-  max-height: 400px;
+  max-height: 800px;
   flex-flow: column wrap;
   -webkit-user-select: none; /* Safari */
   -moz-user-select: none; /* Firefox */
