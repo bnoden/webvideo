@@ -30,17 +30,34 @@ class MediaPlayer extends Component {
       reverse: 0,
       loop: 0,
       speed: 1,
-      volume: 1
+      volume: 1,
+      fullscreen: 0
     };
   }
 
   dblClick = e => {
-    if (e.target.requestFullscreen) {
-      e.target.requestFullscreen();
-    } else if (e.target.mozRequestFullScreen) {
-      e.target.mozRequestFullScreen(); // Firefox
-    } else if (e.target.webkitRequestFullscreen) {
-      e.target.webkitRequestFullscreen(); // Chrome and Safari
+    if (!this.state.fullscreen) {
+      if (e.target.requestFullscreen) {
+        e.target.requestFullscreen();
+      } else if (e.target.mozRequestFullScreen) {
+        e.target.mozRequestFullScreen(); // Firefox
+      } else if (e.target.webkitRequestFullscreen) {
+        e.target.webkitRequestFullscreen(); // Chrome and Safari
+      } else if (e.target.msRequestFullscreen) {
+        e.target.msRequestFullscreen();
+      }
+      this.setState({ fullscreen: 1 });
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+      this.setState({ fullscreen: 0 });
     }
   };
 
@@ -129,7 +146,10 @@ class MediaPlayer extends Component {
 
   render() {
     return (
-      <div className="MediaPlayer" style={{transform: `scale(${this.state.xAxis}, 1)`}} >
+      <div
+        className="MediaPlayer"
+        style={{ transform: `scale(${this.state.xAxis}, 1)` }}
+      >
         <div className="buffer-layer">
           <div className="layer layer-0" />
           <Video
