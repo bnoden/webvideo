@@ -5,3 +5,7 @@ body {
   background-color: #070808;
   font-family: Arial, Verdana;
 }
+
+::-webkit-media-controls {
+  display:none !important;
+}

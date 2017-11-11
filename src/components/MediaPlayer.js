@@ -30,36 +30,9 @@ class MediaPlayer extends Component {
       reverse: 0,
       loop: 0,
       speed: 1,
-      volume: 1,
-      fullscreen: 0
+      volume: 1
     };
   }
-
-  dblClick = e => {
-    if (!this.state.fullscreen) {
-      if (e.target.requestFullscreen) {
-        e.target.requestFullscreen();
-      } else if (e.target.mozRequestFullScreen) {
-        e.target.mozRequestFullScreen(); // Firefox
-      } else if (e.target.webkitRequestFullscreen) {
-        e.target.webkitRequestFullscreen(); // Chrome and Safari
-      } else if (e.target.msRequestFullscreen) {
-        e.target.msRequestFullscreen();
-      }
-      this.setState({ fullscreen: 1 });
-    } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
-      } else if (document.mozCancelFullScreen) {
-        document.mozCancelFullScreen();
-      } else if (document.msExitFullscreen) {
-        document.msExitFullscreen();
-      }
-      this.setState({ fullscreen: 0 });
-    }
-  };
 
   handleClick = e => {
     if (this.state.reverse && !this.state.playing) {
@@ -159,7 +132,6 @@ class MediaPlayer extends Component {
             id="loadedMedia"
             onPause={this.updateTime}
             onClick={this.handleClick}
-            onDoubleClick={this.dblClick}
             className="Video loaded-media layer-2"
             onLoadedMetadata={this.updateTime}
             onInput={this.updateTime}

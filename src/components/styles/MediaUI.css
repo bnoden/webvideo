@@ -1,18 +1,19 @@
 .media-ui {
   display: flex;
   flex-flow: row wrap;
+  background-color: #020a0f;
 }
 .MediaPlayer {
-  max-width: 800px;
-  max-height: 600px;
+  max-width: 1200px;
+  max-height: 900px;
 }
 
 .MediaPlayer,
 .media-config {
-  border-style: solid;
+  /*border-style: solid;
   border-color: #365d80;
   border-width: 2px;
-  border-radius: 4px;
+  border-radius: 4px;*/
   background-color: #020a0f;
   color: #ebf2f7;
   padding: 0px 2px 0px 2px;

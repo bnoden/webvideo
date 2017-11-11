@@ -48,3 +48,28 @@ export const browserIs = {
 export const leadingZeroes = str => {
   return str.length === 2 ? '0' : str.length === 1 ? '00' : '';
 };
+
+export const fullScreenOn = (e) => {
+  e = qs('.App');
+  if (e.requestFullscreen) {
+    e.requestFullscreen();
+  } else if (e.mozRequestFullScreen) {
+    e.mozRequestFullScreen(); // Firefox
+  } else if (e.webkitRequestFullscreen) {
+    e.webkitRequestFullscreen(); // Chrome and Safari
+  } else if (e.msRequestFullscreen) {
+    e.msRequestFullscreen();
+  }
+}
+
+export const fullScreenOff = () => {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  } else if (document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if (document.msExitFullscreen) {
+    document.msExitFullscreen();
+  }
+}
