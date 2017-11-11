@@ -49,8 +49,20 @@ export const leadingZeroes = str => {
   return str.length === 2 ? '0' : str.length === 1 ? '00' : '';
 };
 
-export const fullScreenOn = (e) => {
+export const fullScreenOn = e => {
+  const mediaPlayer = qs('.MediaPlayer');
   e = qs('.App');
+  qs('.media-config').style.display = 'none';
+  qs('.FileLoader').style.display = 'none';
+  mediaPlayer.style.width = `${window.innerWidth}px`;
+  mediaPlayer.style.height = `${window.innerHeight}px`;
+  qs('video').style.width = mediaPlayer.style.width;
+  qs('video').style.height = mediaPlayer.style.height;
+  for (let layer = 0; layer < mediaPlayer.children.length; layer++) {
+    mediaPlayer.children[layer].style.width = mediaPlayer.style.width;
+    mediaPlayer.children[layer].style.height = mediaPlayer.style.height;
+  }
+  qs('.Controls').style.maxWidth = `${window.innerWidth}px`;
   if (e.requestFullscreen) {
     e.requestFullscreen();
   } else if (e.mozRequestFullScreen) {
@@ -60,9 +72,23 @@ export const fullScreenOn = (e) => {
   } else if (e.msRequestFullscreen) {
     e.msRequestFullscreen();
   }
-}
+};
 
 export const fullScreenOff = () => {
+  const defaultWidth = '800px';
+  const defaultHeight = '600px';
+  const mediaPlayer = qs('.MediaPlayer');
+  qs('.media-config').style.display = 'flex';
+  qs('.FileLoader').style.display = 'inherit';
+  mediaPlayer.style.width = defaultWidth;
+  mediaPlayer.style.height = defaultHeight;
+  qs('video').style.width = defaultWidth;
+  qs('video').style.height = defaultHeight;
+  for (let layer = 0; layer < mediaPlayer.children.length; layer++) {
+    mediaPlayer.children[layer].style.width = defaultWidth;
+    mediaPlayer.children[layer].style.height = defaultHeight;
+  }
+  qs('.Controls').style.maxWidth = '818px';
   if (document.exitFullscreen) {
     document.exitFullscreen();
   } else if (document.webkitExitFullscreen) {
@@ -72,4 +98,4 @@ export const fullScreenOff = () => {
   } else if (document.msExitFullscreen) {
     document.msExitFullscreen();
   }
-}
+};

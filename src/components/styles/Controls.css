@@ -1,5 +1,5 @@
 .Controls {
-  max-width: 806px;
+  max-width: 818px;
   height: 40px;
   /*border-style: solid;
   border-color: #365D80;
@@ -15,6 +15,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
 }
 
 #progressSlider {
@@ -23,6 +24,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  z-index: 31256;
 }
 
 .progress-slider {
@@ -42,9 +44,11 @@
   cursor: pointer;
   font-size: 0.8em;
   text-align: center;
+  z-index: 31256;
 }
 
 .btn-playpause {
   width: 100%;
   height: 100%;
+  z-index: 31256;
 }
