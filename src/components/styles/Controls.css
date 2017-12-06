@@ -18,6 +18,10 @@
 
 }
 
+.color-well {
+  cursor: pointer;
+}
+
 #progressSlider {
   width: 90%;
   -webkit-user-select: none;
