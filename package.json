@@ -3,8 +3,6 @@
   "author": "Brandon Oden <brandroid369@gmail.com>",
   "version": "0.1.0",
   "dependencies": {
-    "fluent-ffmpeg": "file:C:/Users/Brandon/AppData/Local/Temp/npm-git-117108-35268-fa9rgm.1l656",
-    "npm-git-install": "^0.3.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-router-dom": "^4.2.2",
@@ -12,7 +10,6 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -20,9 +17,5 @@
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1"
-  },
-  "gitDependencies": {
-    "node-fluent-ffmpeg": "https://github.com/Trainosaur/node-fluent-ffmpeg",
-    "fluent-ffmpeg": "https://github.com/Trainosaur/node-fluent-ffmpeg#9cc9c49"
   }
 }
