@@ -22,6 +22,13 @@
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
 }
+
+.now-playing {
+  font-size: 16px;
+  letter-spacing: 1.5px;
+  width: 804px;
+}
+
 @media screen and (max-width: 1125px) {
   .MediaPlayer {
     width: 600px;
@@ -42,6 +49,11 @@
   .control {
     font-size: 12px;
   }
+  .now-playing {
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    width: 603px;
+  }
 }
 @media screen and (max-width: 825px) {
   .MediaPlayer {
@@ -59,6 +71,11 @@
   }
   .Controls {
     width: 400px;
+  }
+  .now-playing {
+    font-size: 10px;
+    letter-spacing: 0.8px;
+    width: 402px;
   }
 }
 input[type=range]:focus::-ms-fill-lower {

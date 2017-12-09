@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 
 import './styles/MediaPlayer.css';
-import { demoVideo, demoToken, fullScreenOn, fullScreenOff, qs, shortFileName } from '../access';
+import {
+  demoVideo,
+  demoToken,
+  fullScreenOn,
+  fullScreenOff,
+  qs,
+  shortFileName
+} from '../access';
 import Video from './Video';
 import FormatTime from './FormatTime';
 import playButton from './assets/btn-play.png';
@@ -104,8 +111,6 @@ class MediaPlayer extends Component {
       playing: this.state.mediaState === 'Playing' ? 1 : 0
     });
 
-
-
     const btnPlayPause = qs('.btn-playpause');
     const ppbtn = this.state.playing ? pauseButton : playButton;
     btnPlayPause.setAttribute('src', ppbtn);
@@ -125,6 +130,8 @@ class MediaPlayer extends Component {
     if (this.state.mediaState === 'Ended') {
       e.target.currentTime = this.state.reverse ? e.target.duration - 0.3 : 0;
     }
+
+
 
     qs('.progress-slider').max = e.target.duration;
     qs('.progress-slider').value = e.target.currentTime;

@@ -49,6 +49,8 @@ export const leadingZeroes = str => {
   return str.length === 2 ? '0' : str.length === 1 ? '00' : '';
 };
 
+let fullscreen = 0;
+
 export const fullScreenOn = e => {
   const mediaPlayer = qs('.MediaPlayer');
   e = qs('.App');
@@ -58,11 +60,13 @@ export const fullScreenOn = e => {
   mediaPlayer.style.height = `${window.innerHeight}px`;
   qs('video').style.width = mediaPlayer.style.width;
   qs('video').style.height = mediaPlayer.style.height;
+
   for (let layer = 0; layer < mediaPlayer.children.length; layer++) {
     mediaPlayer.children[layer].style.width = mediaPlayer.style.width;
     mediaPlayer.children[layer].style.height = mediaPlayer.style.height;
   }
   qs('.Controls').style.maxWidth = `${window.innerWidth}px`;
+
   if (e.requestFullscreen) {
     e.requestFullscreen();
   } else if (e.mozRequestFullScreen) {
@@ -72,6 +76,12 @@ export const fullScreenOn = e => {
   } else if (e.msRequestFullscreen) {
     e.msRequestFullscreen();
   }
+  fullscreen = 1;
+
+  hideOnFullScreen();
+  e.onmousemove = () => {
+    showOnFullScreen();
+  };
 };
 
 export const fullScreenOff = () => {
@@ -97,5 +107,27 @@ export const fullScreenOff = () => {
     document.mozCancelFullScreen();
   } else if (document.msExitFullscreen) {
     document.msExitFullscreen();
+  }
+  fullscreen = 0;
+  showOnFullScreen();
+};
+
+const hideOnFullScreen = () => {
+  if (fullscreen) {
+    qs('.btn-play').classList.add('hide');
+    qs('.progress-slider').classList.add('hide');
+    qs('.now-playing').classList.add('hide');
+  }
+};
+
+const showOnFullScreen = () => {
+  qs('.btn-play').classList.remove('hide');
+  qs('.progress-slider').classList.remove('hide');
+  qs('.now-playing').classList.remove('hide');
+
+  if (fullscreen) {
+    setTimeout(() => {
+      hideOnFullScreen();
+    }, 1500);
   }
 };

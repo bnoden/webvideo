@@ -31,7 +31,6 @@
 
 .App-header p {
   font-family: Verdana, Arial;
-  font-size: 16px;
   margin: auto;
   padding-top: 12px;
 }
@@ -44,4 +43,20 @@
   text-align: center;
   margin-left: 12px;
   max-width: 30%;
+}
+.file-select {
+  max-width: 100%;
+}
+
+.now-playing, .progress-slider, .btn-play {
+  opacity: 1;
+}
+
+.hide {
+  opacity: 0;
+  -webkit-transition: opacity 2s ease-in-out;
+  -moz-transition: opacity 2s ease-in-out;
+  -ms-transition: opacity 2s ease-in-out;
+  -o-transition: opacity 2s ease-in-out;
+  transition: opacity 2s ease-in-out;
 }

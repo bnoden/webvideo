@@ -7,18 +7,10 @@ import Controls from './components/Controls';
 import './App.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      fullscreen: 0
-    };
-  }
-
   render() {
     return (
       <div className="App">
-        <div >
+        <div>
           <div className="App-header">
             <div className="now-playing" />
             <FileLoader />
