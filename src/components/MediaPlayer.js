@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import './styles/MediaPlayer.css';
-import { demoVideo, demoToken, qs, shortFileName } from '../access';
+import { demoVideo, demoToken, fullScreenOn, fullScreenOff, qs, shortFileName } from '../access';
 import Video from './Video';
 import FormatTime from './FormatTime';
 import playButton from './assets/btn-play.png';
@@ -30,9 +30,24 @@ class MediaPlayer extends Component {
       reverse: 0,
       loop: 0,
       speed: 1,
-      volume: 1
+      volume: 1,
+      fullscreen: 0
     };
   }
+
+  toggleFullscreen = () => {
+    if (!this.state.fullscreen) {
+      fullScreenOn();
+      this.setState({ fullscreen: 1 });
+    } else {
+      fullScreenOff();
+      this.setState({ fullscreen: 0 });
+    }
+  };
+
+  dblClick = () => {
+    this.toggleFullscreen();
+  };
 
   handleClick = e => {
     if (this.state.reverse && !this.state.playing) {
@@ -89,6 +104,8 @@ class MediaPlayer extends Component {
       playing: this.state.mediaState === 'Playing' ? 1 : 0
     });
 
+
+
     const btnPlayPause = qs('.btn-playpause');
     const ppbtn = this.state.playing ? pauseButton : playButton;
     btnPlayPause.setAttribute('src', ppbtn);
@@ -122,6 +139,7 @@ class MediaPlayer extends Component {
       <div
         className="MediaPlayer"
         style={{ transform: `scale(${this.state.xAxis}, 1)` }}
+        onDoubleClick={this.dblClick}
       >
         <div className="buffer-layer">
           <div className="layer layer-0" />
