@@ -51,49 +51,66 @@ export const leadingZeroes = str => {
 
 let fullscreen = 0;
 
-export const fullScreenOn = e => {
+export const fullScreenOn = () => {
+  const loadedMedia = qs('#loadedMedia');
   const mediaPlayer = qs('.MediaPlayer');
-  e = qs('.App');
+  const layerOne = qs('#layerOne');
+  const bufferLayer = qs('#bufferLayer');
+  const app = qs('.App');
+
   qs('.media-config').style.display = 'none';
   qs('.FileLoader').style.display = 'none';
-  mediaPlayer.style.width = `${window.innerWidth}px`;
-  mediaPlayer.style.height = `${window.innerHeight}px`;
-  qs('video').style.width = mediaPlayer.style.width;
-  qs('video').style.height = mediaPlayer.style.height;
 
-  for (let layer = 0; layer < mediaPlayer.children.length; layer++) {
-    mediaPlayer.children[layer].style.width = mediaPlayer.style.width;
-    mediaPlayer.children[layer].style.height = mediaPlayer.style.height;
-  }
-  qs('.Controls').style.maxWidth = `${window.innerWidth}px`;
-
-  if (e.requestFullscreen) {
-    e.requestFullscreen();
-  } else if (e.mozRequestFullScreen) {
-    e.mozRequestFullScreen(); // Firefox
-  } else if (e.webkitRequestFullscreen) {
-    e.webkitRequestFullscreen(); // Chrome and Safari
-  } else if (e.msRequestFullscreen) {
-    e.msRequestFullscreen();
+  if (app.requestFullscreen) {
+    app.requestFullscreen();
+  } else if (app.mozRequestFullScreen) {
+    app.mozRequestFullScreen(); // Firefox
+  } else if (app.webkitRequestFullscreen) {
+    app.webkitRequestFullscreen(); // Chrome and Safari
+  } else if (app.msRequestFullscreen) {
+    app.msRequestFullscreen();
   }
   fullscreen = 1;
+  mediaPlayer.style.width = `${window.innerWidth}px`;
+  mediaPlayer.style.height = `${window.innerHeight}px`;
+  bufferLayer.style.height = `${window.innerHeight}px`;
+  bufferLayer.style.width = `${window.innerWidth}px`;
+  loadedMedia.style.height = `${window.innerHeight}px`;
+  loadedMedia.style.width = bufferLayer.style.width;
+
+  for (let layer = 0; layer < mediaPlayer.children.length; layer++) {
+    mediaPlayer.children[layer].style.height = loadedMedia.style.height;
+    mediaPlayer.children[layer].style.width = loadedMedia.style.width;
+  }
+  layerOne.style.width = loadedMedia.style.width;
+  layerOne.style.height = loadedMedia.style.height;
+
+  qs('.Controls').style.maxWidth = `${window.innerWidth}px`;
 
   hideOnFullScreen();
-  e.onmousemove = () => {
+  app.onmousemove = () => {
     showOnFullScreen();
   };
 };
 
 export const fullScreenOff = () => {
+  const loadedMedia = qs('#loadedMedia');
+  const mediaPlayer = qs('.MediaPlayer');
+  const layerOne = qs('#layerOne');
+  const bufferLayer = qs('#bufferLayer');
   const defaultWidth = '800px';
   const defaultHeight = '600px';
-  const mediaPlayer = qs('.MediaPlayer');
+  layerOne.style.width = defaultWidth;
+  layerOne.style.height = defaultHeight;
+  bufferLayer.style.width = defaultWidth;
+  bufferLayer.style.height = defaultHeight;
   qs('.media-config').style.display = 'flex';
   qs('.FileLoader').style.display = 'inherit';
   mediaPlayer.style.width = defaultWidth;
   mediaPlayer.style.height = defaultHeight;
-  qs('video').style.width = defaultWidth;
-  qs('video').style.height = defaultHeight;
+  loadedMedia.style.width = defaultWidth;
+  loadedMedia.style.height = defaultHeight;
+
   for (let layer = 0; layer < mediaPlayer.children.length; layer++) {
     mediaPlayer.children[layer].style.width = defaultWidth;
     mediaPlayer.children[layer].style.height = defaultHeight;
@@ -112,7 +129,7 @@ export const fullScreenOff = () => {
   showOnFullScreen();
 };
 
-const hideOnFullScreen = () => {
+export const hideOnFullScreen = () => {
   if (fullscreen) {
     qs('.btn-play').classList.add('hide');
     qs('.progress-slider').classList.add('hide');
@@ -120,7 +137,7 @@ const hideOnFullScreen = () => {
   }
 };
 
-const showOnFullScreen = () => {
+export const showOnFullScreen = () => {
   qs('.btn-play').classList.remove('hide');
   qs('.progress-slider').classList.remove('hide');
   qs('.now-playing').classList.remove('hide');

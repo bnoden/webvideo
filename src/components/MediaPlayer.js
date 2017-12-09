@@ -7,7 +7,8 @@ import {
   fullScreenOn,
   fullScreenOff,
   qs,
-  shortFileName
+  shortFileName,
+  showOnFullScreen
 } from '../access';
 import Video from './Video';
 import FormatTime from './FormatTime';
@@ -74,6 +75,9 @@ class MediaPlayer extends Component {
     });
 
     e.target.paused ? e.target.play() : e.target.pause();
+    if (this.state.fullscreen) {
+      showOnFullScreen();
+    }
   };
 
   isReversed = () => {
@@ -131,8 +135,6 @@ class MediaPlayer extends Component {
       e.target.currentTime = this.state.reverse ? e.target.duration - 0.3 : 0;
     }
 
-
-
     qs('.progress-slider').max = e.target.duration;
     qs('.progress-slider').value = e.target.currentTime;
 
@@ -148,8 +150,7 @@ class MediaPlayer extends Component {
         style={{ transform: `scale(${this.state.xAxis}, 1)` }}
         onDoubleClick={this.dblClick}
       >
-        <div className="buffer-layer">
-          <div className="layer layer-0" />
+        <div id="bufferLayer" className="buffer-layer">
           <Video
             src={demoSrc}
             volume={this.props.volume}
@@ -165,7 +166,6 @@ class MediaPlayer extends Component {
             loop={this.state.loop ? true : false}
             preload="auto"
           />
-          <div className="layer overlay" />
           <div id="layerOne" className="layer layer-1 layer-color" />
         </div>
       </div>
