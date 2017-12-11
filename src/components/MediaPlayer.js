@@ -58,7 +58,6 @@ class MediaPlayer extends Component {
   };
 
   handleClick = e => {
-    console.log(process.env);
     if (this.state.reverse && !this.state.playing) {
       e.target.currentTime -= e.target.playbackRate * 0.025;
       if (e.target.currentTime <= 0.3) {
