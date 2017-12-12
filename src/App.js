@@ -12,7 +12,7 @@ class App extends Component {
       <div className="App">
         <div>
           <div className="App-header">
-            <div className="now-playing" />
+            <div className="now-playing"><p></p></div>
             <FileLoader />
           </div>
           <div>

@@ -7,7 +7,6 @@ import {
   fullScreenOn,
   fullScreenOff,
   qs,
-  shortFileName,
   showOnFullScreen
 } from '../access';
 import Video from './Video';
@@ -16,11 +15,21 @@ import playButton from './assets/btn-play.png';
 import pauseButton from './assets/btn-pause.png';
 
 export const demoSrc = 'https://' + demoVideo + demoToken;
+const url = require('url');
+const path = require('path');
 
-export const srcDisplay = () => {
-  return qs('#file-select').value
-    ? shortFileName(qs('#file-select').value)
-    : shortFileName(demoSrc, 1);
+export const srcDisplay = _display => {
+  // assuming we don't provide a display name some other way
+  if (!_display) {
+    // if the file source is from local disk
+    if (qs('#file-select').value) {
+      _display = qs('input[type=file]').files[0].name;
+      // if the file source is a web URL
+    } else if (qs('video').src) {
+      _display = path.basename(url.parse(qs('video').src).pathname);
+    }
+  }
+  return _display;
 };
 
 class MediaPlayer extends Component {
@@ -138,9 +147,12 @@ class MediaPlayer extends Component {
     qs('.progress-slider').max = e.target.duration;
     qs('.progress-slider').value = e.target.currentTime;
 
-    qs('.now-playing').innerHTML = `<p>[ ${srcDisplay()} ]
-      ${this.state.mediaState} ${FormatTime(e.target, 'current')} |
-      -${FormatTime(e.target, 'remaining')}</p>`;
+    qs('.now-playing').firstChild.innerText = `[ ${srcDisplay()} ] ${this.state
+      .mediaState} ${FormatTime(e.target, 'current')} | -${FormatTime(
+      e.target,
+      'remaining'
+    )}`;
+
   };
 
   render() {

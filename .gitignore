@@ -7,12 +7,14 @@
 # testing
 /coverage
 
+
 # production
 /build
 
 # misc
 package-lock.json
 firebase.json
+demo_video_min1.mp4
 .*
 !/.gitignore
 .DS_Store

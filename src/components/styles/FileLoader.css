@@ -3,10 +3,10 @@
   max-width:  100%;
   max-height: auto;
   margin: auto;
+  margin-bottom: -6px;
   text-align: center;
   color: #EBEFF5;
   font-weight: 600;
-  margin-top: 6px;
   border-radius: 4px;
   border-style: inset;
   border-width: 3px;
@@ -15,4 +15,14 @@
 
 #drop_zone h3 {
   padding-top: 12px;
+}
+
+.file-size {
+  font-family: Arial, Verdana;
+  margin: auto;
+  font-size: 11px;
+  color: #C1F7CF;
+  font-weight: 100;
+  z-index: 200;
+  text-align: right;
 }
