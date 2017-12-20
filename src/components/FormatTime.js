@@ -15,7 +15,7 @@ const FormatTime = (media, str) => {
 
   const hourStr = _duration >= 3600 && `${hours}`;
   const minuteStr =
-    minutes <= 10 && _duration >= 3600 ? `0${minutes}` : `${minutes}`;
+    minutes <= 9 && _duration >= 3600 ? `0${minutes}` : `${minutes}`;
   const secondStr = seconds >= 10 ? `${seconds}` : `0${seconds}`;
 
   return _duration >= 3600
