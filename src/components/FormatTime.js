@@ -10,7 +10,7 @@ const FormatTime = (media, str) => {
         : str === 'duration' ? _duration : _duration;
 
   const seconds = _time >= 60 ? Math.floor(_time % 60) : Math.floor(_time);
-  const minutes = _time >= 60 ? Math.floor(_time / 60) : 0;
+  const minutes = _time >= 60 ? Math.floor(_time / 60)%60 : 0;
   const hours = _time >= 3600 ? Math.floor(_time / 3600) : 0;
 
   const hourStr = _duration >= 3600 && `${hours}`;
