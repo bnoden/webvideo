@@ -68,7 +68,7 @@ class MediaPlayer extends Component {
 
   handleClick = e => {
     if (this.state.reverse && !this.state.playing) {
-      e.target.currentTime -= e.target.playbackRate * 0.025;
+      e.target.currentTime -= e.target.playbackRate * 0.03;
       if (e.target.currentTime <= 0.3) {
         e.target.currentTime = this.state.remainder;
         if (!this.state.loop) {
@@ -94,13 +94,9 @@ class MediaPlayer extends Component {
     }
   };
 
-  isReversed = () => {
-    return qs('#btn-reverse').checked ? 1 : 0;
-  };
+  isReversed = () => (qs('#btn-reverse').checked ? 1 : 0);
 
-  isLooped = () => {
-    return qs('#btn-loop').checked ? 1 : 0;
-  };
+  isLooped = () => (qs('#btn-loop').checked ? 1 : 0);
 
   updateTime = e => {
     this.setState({
@@ -130,9 +126,9 @@ class MediaPlayer extends Component {
     });
 
     if (this.state.reverse && this.state.playing) {
-      e.target.currentTime += e.target.playbackRate * -0.025;
+      e.target.currentTime += e.target.playbackRate * -0.03;
       if (e.target.currentTime <= 0.3) {
-        e.target.currentTime = this.state.remainder;
+        e.target.currentTime = this.state.remainder - 0.03;
         if (!this.state.loop) {
           e.target.pause();
           this.setState({ mediaState: 'Ended' });

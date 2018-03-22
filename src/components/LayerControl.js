@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { browserIs, leadingZeroes, qs, qsa } from '../access';
+import { leadingZeroes, qs, qsa } from '../access';
 import './styles/OpacityControl.css';
 import LayerColor from './LayerColor';
 import OpacitySlider from './OpacitySlider';
@@ -25,16 +25,10 @@ class LayerControl extends Component {
 
   setLayerOpacity = e => {
     this.setState({ opacity: e.target.value });
+
     const layers = qsa('.layer-1');
-    if (!browserIs.MS()) {
-      for (let layer of layers) {
-        layer.style.opacity = e.target.value;
-      }
-    } else {
-      for (let i = 0; i < layers.length; ++i) {
-        layers[i].style.opacity = e.target.value;
-      }
-    }
+    [...layers].map(layer => (layer.style.opacity = e.target.value));
+
     qs('.opacitometer-1').innerHTML = `
     <span className="leading-zeroes">${leadingZeroes(
       (qs('.layer-1').style.opacity * 100).toFixed()

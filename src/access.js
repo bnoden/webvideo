@@ -1,10 +1,6 @@
+import { demoVideo, demoToken } from './func';
 export const qs = e => document.querySelector(e);
 export const qsa = e => document.querySelectorAll(e);
-
-export const demoVideo =
-  'firebasestorage.googleapis.com/v0/b/bn-wvid.appspot.com/o/TheBunnyMovie.mp4';
-export const demoToken =
-  '?alt=media&token=ac6c7062-076f-49eb-a747-acd232767daa';
 
 const isMS =
   /MSIE 10/i.test(navigator.userAgent) ||
@@ -131,3 +127,5 @@ export const showOnFullScreen = () => {
     }, 1500);
   }
 };
+
+export { demoVideo, demoToken };

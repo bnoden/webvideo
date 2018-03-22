@@ -8,29 +8,35 @@ import pauseButton from './assets/btn-pause.png';
 class Controls extends Component {
   constructor(props) {
     super(props);
-    this.state = { mediaState: '' };
+    this.state = {
+      btnPlayPause: playButton
+    };
   }
-  v = () => qs('#loadedMedia');
-  pp = () => qs('.btn-playpause');
 
-  btnPlayPause = () =>
-    this.pp().setAttribute('src', this.v().paused ? playButton : pauseButton);
+  media = () => qs('#loadedMedia');
+  playPause = () => qs('.btn-playpause');
 
-  togglePaused = () => {
-    this.v().paused ? this.v().play() : this.v().pause();
-    this.btnPlayPause();
+  togglePaused = (m, pp) => {
+    m = this.media();
+    pp = this.playPause();
+    m.paused ? m.play() : m.pause();
+    this.setState({
+      btnPlayPause: m.paused ? playButton : pauseButton
+    });
+    pp.setAttribute('src', this.state.btnPlayPause);
   };
 
-  handleInput = e => {
-    const v = qs('#loadedMedia');
-    v.currentTime = e.target.value;
-  };
+  handleInput = e => (this.media().currentTime = e.target.value);
 
   render() {
     return (
       <div className="Controls">
         <div type="button" className="btn-play" onClick={this.togglePaused}>
-          <img className="btn-playpause" src={playButton} alt="Play" />
+          <img
+            className="btn-playpause"
+            src={this.state.btnPlayPause}
+            alt="Play"
+          />
         </div>
         <div id="progressSlider">
           <input

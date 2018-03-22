@@ -15,6 +15,7 @@
 package-lock.json
 firebase.json
 demo_video_min1.mp4
+/src/func
 .*
 !/.gitignore
 .DS_Store

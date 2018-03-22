@@ -40,8 +40,8 @@ export const localSrc = () => {
       mediaNode.src = fileURL;
       qs('.file-size').innerText = `${requestFileSize(file)}`;
 
-      console.dir(qs('input[type=file]').files[0]);
-      console.log('*-*-* FILE: ' + typeof file + ' ' + file);
+      // console.dir(qs('input[type=file]').files[0]);
+      // console.log('*-*-* FILE: ' + typeof file + ' ' + file);
     })();
   }
 };
