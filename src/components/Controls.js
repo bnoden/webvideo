@@ -10,18 +10,15 @@ class Controls extends Component {
     super(props);
     this.state = { mediaState: '' };
   }
+  v = () => qs('#loadedMedia');
+  pp = () => qs('.btn-playpause');
+
+  btnPlayPause = () =>
+    this.pp().setAttribute('src', this.v().paused ? playButton : pauseButton);
 
   togglePaused = () => {
-    const v = qs('#loadedMedia');
-    const btnPlayPause = qs('.btn-playpause');
-
-    if (v.paused) {
-      v.play();
-      btnPlayPause.setAttribute('src', pauseButton);
-    } else {
-      v.pause();
-      btnPlayPause.setAttribute('src', playButton);
-    }
+    this.v().paused ? this.v().play() : this.v().pause();
+    this.btnPlayPause();
   };
 
   handleInput = e => {

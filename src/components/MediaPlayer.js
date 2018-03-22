@@ -79,11 +79,16 @@ class MediaPlayer extends Component {
       }
     }
 
+    e.target.paused ? e.target.play() : e.target.pause();
     this.setState({
       mediaState: e.target.paused ? 'Paused' : 'Playing'
     });
+    const btnPlayPause = qs('.btn-playpause');
+    btnPlayPause.setAttribute(
+      'src',
+      !this.state.playing ? pauseButton : playButton
+    );
 
-    e.target.paused ? e.target.play() : e.target.pause();
     if (this.state.fullscreen) {
       showOnFullScreen();
     }
@@ -124,10 +129,6 @@ class MediaPlayer extends Component {
       playing: this.state.mediaState === 'Playing' ? 1 : 0
     });
 
-    const btnPlayPause = qs('.btn-playpause');
-    const ppbtn = this.state.playing ? pauseButton : playButton;
-    btnPlayPause.setAttribute('src', ppbtn);
-
     if (this.state.reverse && this.state.playing) {
       e.target.currentTime += e.target.playbackRate * -0.025;
       if (e.target.currentTime <= 0.3) {
@@ -147,12 +148,12 @@ class MediaPlayer extends Component {
     qs('.progress-slider').max = e.target.duration;
     qs('.progress-slider').value = e.target.currentTime;
 
-    qs('.now-playing').firstChild.innerText = `[ ${srcDisplay()} ] ${this.state
-      .mediaState} ${FormatTime(e.target, 'current')} | -${FormatTime(
+    qs('.now-playing').firstChild.innerText = `[ ${srcDisplay()} ] ${
+      this.state.mediaState
+    } ${FormatTime(e.target, 'current')} | -${FormatTime(
       e.target,
       'remaining'
     )}`;
-
   };
 
   render() {
