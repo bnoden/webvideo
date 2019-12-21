@@ -71,6 +71,18 @@ class VolumeControl extends Component {
     qs('#loadedMedia').style.transform = `scale(${x}, 1)`;
   };
 
+  togglePip = () => {
+    if (!qs('#btn-pip').disabled) {
+      if (qs('#btn-pip').checked) {
+        qs('#loadedMedia').requestPictureInPicture()
+        .catch(error => {});
+      } else {
+        document.exitPictureInPicture()
+        .catch(error => {});
+      }
+    }
+  };
+
   render() {
     return (
       <div>
@@ -109,6 +121,14 @@ class VolumeControl extends Component {
           <div className="mirror-box box">
             <input type="checkbox" id="btn-mirror" onChange={this.toggleMirror} />
             <label htmlFor="btn-mirror">Mirror</label>
+          </div>
+          <div className="pip-box box">
+            <input
+              type="checkbox" id="btn-pip"
+              disabled={!document.pictureInPictureEnabled || (!!document.querySelectorAll('#loadedMedia').length && qs('#loadedMedia').disablePictureInPicture)}
+              onChange={this.togglePip}
+            />
+            <label htmlFor="btn-pip"> PIP </label>
           </div>
         </div>
       </div>
